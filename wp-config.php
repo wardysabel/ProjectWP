@@ -22,7 +22,8 @@
 /** The name of the database for WordPress */
 define('REVISR_WORK_TREE', '/berw/homes1/y/ydw/public_html/dyfiwildlifecentre/'); // Added by Revisr
 define('REVISR_GIT_PATH', ''); // Added by Revisr
-define('DB_NAME', 'ydw');
+
+define('DB_NAME', 'cs39930_19_20_ydw');
 
 /** MySQL database username */
 define('DB_USER', 'ydw');

@@ -7,7 +7,7 @@ Author URI:        http://profiles.wordpress.org/flippercode/
 Author:            flippercode
 Donate link:       (a link for donating)
 Requires at least: 3.4
-Tested up to: 5.2.1
+Tested up to: 5.3.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -150,6 +150,9 @@ This section describes how to install the plugin and get it working.
 11. Display traffic real time conditions with traffic layer.
 
 == Changelog ==
+
+= 4.1.2 =
+* Fix: Missing translation files added.
 
 = 4.1.0 =
 * New: Search control on map for easy location searching.

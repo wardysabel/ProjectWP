@@ -5,7 +5,7 @@ Plugin URI: https://www.flippercode.com/
 Description: A Responsive Google Maps plugin to display custom markers on the google maps. Easily add locations and display custom messages in infowindow.
 Author: flippercode
 Author URI: https://www.flippercode.com/
-Version: 4.1.1
+Version: 4.1.2
 Text Domain: wpgmp_google_map
 Domain Path: /lang/
 */
