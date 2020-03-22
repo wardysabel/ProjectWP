@@ -22,6 +22,7 @@
  * @since i-amaze 1.0
  */
 
+
 /*
  * Set up the content width value based on the theme's design.
  *
@@ -67,6 +68,9 @@ function iamaze_setup() {
 	 * This theme styles the visual editor to resemble the theme style,
 	 * specifically font, colors, icons, and column width.
 	 */
+	add_theme_support( 'editor-styles');
+	//add_theme_support( 'dark-editor-style' ); 
+	add_theme_support( 'wp-block-styles' );
 	add_editor_style( array( 'css/editor-style.css', 'fonts/genericons.css', iamaze_fonts_url() ) );
 
 	// Adds RSS feed links to <head> for posts and comments.
@@ -80,6 +84,7 @@ function iamaze_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menu( 'primary', esc_attr__( 'Navigation Menu', 'i-amaze' ) );
+	register_nav_menu( 'alt-primary', esc_attr__( 'Alternate Navigation Menu', 'i-amaze' ) );	
 	
 	// add title tag support since WordPress 4.1 
 	add_theme_support( 'title-tag' );		
@@ -95,7 +100,7 @@ function iamaze_setup() {
 	 * additional Image sizes.
 	 */
 	//add_image_size( 'iamaze-slider-thumb', 1920, 1080, true ); //(cropped)	
-	add_image_size( 'iamaze-slider-thumb', 1280, 720, true ); //(cropped)	
+	add_image_size( 'iamaze-slider-thumb', 1600, 900, true ); //(cropped)	
 	add_image_size( 'iamaze-single-thumb', 1200, 480, true ); //(cropped)
 	
 	// Add Support for woocommerce
@@ -235,6 +240,8 @@ function iamaze_scripts_styles() {
 	
 	// Add owl-carusel transition
 	wp_enqueue_style( 'owl-carousel-transitions', get_template_directory_uri() . '/css/owl.transitions.css', array(), '2016-01-12' );				
+	
+	wp_register_style( 'dynamic-style', get_template_directory_uri() . '/css/dynamic.css', array(), '1.0.1' );	
 	
 	// Loads our main stylesheet.
 	wp_enqueue_style( 'iamaze-style', get_stylesheet_uri(), array(), '1.0.7' );
@@ -482,6 +489,24 @@ function iamaze_get_link_url() {
  * @return array The filtered body class list.
  */
 function iamaze_body_class( $classes ) {
+
+	
+	global $post;
+	
+	$iamaze_page_class = '';
+	$iamaze_page_nopad = 0;	
+	$show_trans_header = '';
+	$header_type = '';
+	$no_ubar = '';
+	  
+	if ( function_exists( 'rwmb_meta' ) ) { 
+		$iamaze_page_class = rwmb_meta('iamaze_page_class');
+		$iamaze_page_nopad = rwmb_meta('iamaze_page_nopad');
+		$show_trans_header = rwmb_meta('iamaze_trans_header');
+		$header_type = rwmb_meta('iamaze_header_type');
+		$no_ubar = rwmb_meta('iamaze_no_ubar');		
+	}
+		
 	if ( ! is_multi_author() )
 		$classes[] = 'single-author';
 
@@ -494,30 +519,69 @@ function iamaze_body_class( $classes ) {
 	//class assignment based on blog layout
 	if ( get_theme_mod('blog_layout', '2') == '2' ) {
 		$classes[] = 'twocol-blog';
-	} else
-	{
+	} else {
 		$classes[] = 'onecol-blog';
 	}
 	
-	if ( get_theme_mod('wide_layout', '1') != 0 )
-	{
+	if ( get_theme_mod('wide_layout', '1') != 0 ) {
 		$classes[] = 'nx-wide';		
-	} else
-	{
+	} else {
 		$classes[] = 'nx-boxed';
 	}	
 
-	$hide_front_slider = get_theme_mod('slider_stat', 0);
+	$hide_front_slider = get_theme_mod('slider_stat', 1);
 	if ( ( is_home() && $hide_front_slider == 0 ) || ( is_front_page() && $hide_front_slider == 0 )  ) {
 		$classes[] = 'home-slider-off';	
-	} else
-	{
+	} else {
 		$classes[] = 'home-slider-on';
 	}
 	
 	// Add PreLoader Class
-	if( get_theme_mod('pre_loader', 0) == 1 )
-		$classes[] = 'nx-preloader';	
+	if( get_theme_mod('pre_loader', 1) == 1 ) {
+		$classes[] = 'nx-preloader';
+	}
+	
+	if( get_theme_mod('trans_header', 1) == 0 ) {
+		$classes[] = 'opaque-header';
+	}
+	
+	if( get_theme_mod('uppercase_nav', 0) == 1 ) {
+		$classes[] = 'nav-uppercase';
+	}	
+	
+	if( ! empty($iamaze_page_class) )
+		$classes[] = esc_attr($iamaze_page_class);
+	
+	if( $iamaze_page_nopad == 1 )
+		$classes[] = 'tx-nopad';
+		
+	if ( is_page_template( 'page_pb.php' ) ) {
+		$classes[] = 'nx-pb';
+	}	
+		
+	if ( is_page_template( 'page_elementor.php' ) ) {
+		$classes[] = 'nx-full-width nx-elementor';
+	}	
+		
+	if ( is_page_template( 'page_brizy.php' ) ) {
+		$classes[] = 'nx-full-width nx-brizy';
+	}
+		
+	if ( is_page_template( 'page_full-width.php' ) ) {
+		$classes[] = 'nx-full-width';
+	}
+	
+	if( $show_trans_header == 1 ) {
+		$classes[] = 'nx-fullscreen';
+	}
+	
+	if( $header_type == '2' ) {
+		$classes[] = 'nx-vi-header';
+	}
+	
+	if ( $no_ubar == 1 ) {
+		$classes[] = 'no-ubar';
+	}					
 	
 	return $classes;
 }
@@ -567,8 +631,12 @@ function iamaze_customize_register( $wp_customize ) {
 	$wp_customize->selective_refresh->add_partial( 'social-icons', array(
 		'selector' => '.socialicons',
 		'settings' => array( 'itrans_social_facebook' ),
-		//'render_callback' => 'twentyfifteen_customize_partial_blogname',
-	) );	
+	) );
+	
+	$wp_customize->selective_refresh->add_partial( 'tagline', array(
+		'selector' => '.vtitle-tagline',
+		'settings' => array( 'blogdescription' ),
+	) );		
 	
 }
 add_action( 'customize_register', 'iamaze_customize_register' );
@@ -613,6 +681,8 @@ include get_template_directory() . '/inc/custom_functions.php';
 
 include get_template_directory() . '/inc/nx-custom-style.php';
 
+include get_template_directory() . '/inc/woo-functions.php';
+
 /*-----------------------------------------------------------------------------------*/
 /*	changing default Excerpt length 
 /*-----------------------------------------------------------------------------------*/ 
@@ -653,7 +723,9 @@ add_filter( 'the_excerpt', 'iamaze_excerpt_more_link', 21 );
 /*-----------------------------------------------------------------------------------*/ 
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
 include get_template_directory() . '/nx-customizer.php';
+
 
 if ( !class_exists( 'Kirki' ) ) {
 	include get_template_directory() . '/inc/kirki/kirki.php';
@@ -668,7 +740,6 @@ include get_template_directory() . '/inc/responsive-menu/responsive-menu.php';
 require_once( get_template_directory() . '/inc/theme-welcome/theme-welcome.php' );
 
 
-
 /**
  * Enqueue the customizer stylesheet.
  */
@@ -679,6 +750,16 @@ function iamaze_enqueue_customizer_stylesheet() {
 
 }
 add_action( 'customize_controls_print_styles', 'iamaze_enqueue_customizer_stylesheet' );
+
+/**
+ * Add a stylesheet for admin panels
+ * @since i-excel 1.0
+ */
+add_action('admin_init', 'iamaze_admin_css');
+function iamaze_admin_css() {
+   wp_register_style( 'iamaze-admin-css', get_template_directory_uri() . '/css/nx-dashboard.css' );
+   wp_enqueue_style( 'iamaze-admin-css' );
+}
 
 /*
  * Loads the Options Panel
@@ -707,17 +788,10 @@ function iamaze_register_required_plugins() {
 
          // This is an example of how to include a plugin from a private repo in your theme.
         array(
-            'name' => 'Breadcrumb NavXT', // The plugin name.
-            'slug' => 'breadcrumb-navxt', // The plugin slug (typically the folder name).
-            'required' => false, // If false, the plugin is only 'recommended' instead of required.
-        ),
-         // This is an example of how to include a plugin from a private repo in your theme.
-        array(
             'name' => 'TemplatesNext OnePager', // The plugin name.
             'slug' => 'templatesnext-onepager', // The plugin slug (typically the folder name).
             'required' => false, // If false, the plugin is only 'recommended' instead of required.
-        )		
-
+        ),
     );
 
     /**
@@ -760,4 +834,43 @@ function iamaze_register_required_plugins() {
 
     tgmpa( $plugins, $config );
 
+}
+
+/* Admin Notice for i-amaze Users */
+add_action('admin_notices', 'iamaze_admin_notice_008');
+function iamaze_admin_notice_008() {
+    global $current_user ;
+        $user_id = $current_user->ID;
+		$about_url = admin_url('themes.php?page=welcome-screen-about');			
+		$support_url = esc_url('http://www.wp-demos.com/i-spirit/i-amaze-consulting/tutorial/');
+		$notice_url = esc_url('https://wordpress.org/support/theme/i-amaze/reviews/?filter=5');
+		$demo_url = esc_url('http://www.templatesnext.org/i-amaze/?ref=iedash#tx-demos');		
+        /* Check that the user hasn't already clicked to ignore the message */
+    if ( ! get_user_meta($user_id, 'iamaze_ignore_notice_008') ) {
+        echo '<div class="updated tx-dash-notice">'; 
+		echo '<div class="nxn-content">';
+		printf(__('<h2 class="nxn-welcome">Welcome to I-AMAZE</h2>', 'i-amaze'));
+		
+		echo '<div class="nxn-desc">';
+		printf(__('<p class="nxn-start">Start your website with one of I-AMAZE ready to use demo layouts.</p>', 'i-amaze'));				
+		echo '</div>';
+		
+		printf(__('<a href="%1$s" target="_blank" class="button button-primary button-hero txocwiz tx-livedemo" style="margin-top: 16px; margin-right: 12px;">I-AMAZE Demo Setup Wizard</a>', 'i-amaze' ), $about_url);	
+		printf(__('<a href="%1$s" class="button button-primary button-hero tx-livedemo" style="margin-top: 16px; margin-right: 12px;">Dismiss This Notice</a><div class="clear"></div>', 'i-amaze' ), '?iamaze_notice_ignore_008=0');				
+		
+		printf(__('<a href="%1$s" class="tx-dashnotice-close">Dismiss</a><div class="clear"></div>', 'i-amaze' ), '?iamaze_notice_ignore_008=0');				
+        echo '</div>';
+        echo '<div class="clear"></div>';
+        echo '</div>';				
+    }
+}
+
+add_action('admin_init', 'iamaze_notice_ignore_008');
+function iamaze_notice_ignore_008() {
+    global $current_user;
+	$user_id = $current_user->ID;
+    /* If user clicks to ignore the notice, add that to their user meta */
+	if ( isset($_GET['iamaze_notice_ignore_008']) && '0' == $_GET['iamaze_notice_ignore_008'] ) {
+    	add_user_meta($user_id, 'iamaze_ignore_notice_008', 'true', true);
+    }
 }

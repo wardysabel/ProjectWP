@@ -35,8 +35,7 @@ function iamaze_is_plugin_installed($pluginTitle)
 * @return string $url action url
 */
 
-function iamaze_plugin_install($plugin_slug)
-{
+function iamaze_plugin_install($plugin_slug) {
 	$nonce_install  = wp_nonce_url(
 		add_query_arg(
 			array(

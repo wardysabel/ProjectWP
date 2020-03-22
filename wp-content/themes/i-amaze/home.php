@@ -13,7 +13,7 @@ if (function_exists('txo_sections_show')) {
 
 get_header(); ?>
 	<div id="primary" class="content-area">
-		<div id="content" class="site-content" role="main">
+		<div id="content" class="site-content iamaze-home" role="main">
 		<?php
 			if (function_exists('txo_sections_show')) {
 				txo_sections_show();

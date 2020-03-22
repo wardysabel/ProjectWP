@@ -137,7 +137,134 @@ li.customize-control {
 	color: #fff;
 }
 
-	
-	
-	
-	
+
+#customize-control-logo-trans {
+	background-image: url("../images/logo-bg.png");
+	background-position: center;
+	background-size: cover;
+}
+
+.tx-rednotice {
+	display: block;
+	border: 1px solid #06C;
+	padding: 12px;
+	margin: 6px 0px 24px 0px;
+	background-color: #CEE7FF;
+}
+
+.tx-layout-link,
+.tx-layout-link:visited {
+	display: block;
+	width: 100%;
+	text-align: center;
+	background-color: #dd3333;
+	color: #FFFFFF;
+	font-weight: 600;
+	text-decoration: none;
+	padding: 12px 12px;
+	margin-top: 12px;
+}
+
+.tx-layout-link:hover {
+	background-color: #373737;
+	color: #FFFFFF;
+}
+
+.promo-box .txo-red {
+	font-weight: 500;
+	color: #C00;
+	padding: 4px 12px;
+}
+
+.promo-box .txo-red a,
+.promo-box .txo-red a:visited {
+	color: #C00;	
+}
+
+.notice-info.kirki-telemetry {
+	display: none;
+}
+
+
+
+
+
+.dismiss-cross,
+.rn-dismiss-btn {
+	display: block;
+	float: left;
+	margin-right: 12px;
+	font-weight: bold;
+	margin-top: 8px;
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 20px;
+	color: #fff;
+	background-color: #0085ba;
+	padding: 2px 6px;
+	text-transform: uppercase;
+}
+
+.dismiss-cross {
+	margin-right: 0px;
+	font-weight: normal;
+}
+
+.dismiss-cross:hover,
+.rn-dismiss-btn:hover {
+	color: #FFF;
+	background-color: #006086;
+}
+
+.dismiss-text {
+	display: block;
+	float: left;
+	margin-top: 8px;
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 20px;
+	color: #fff;
+	background-color: #0085ba;
+	padding: 2px 12px 2px 6px;
+}
+
+.dismiss-text:hover {
+	color: #FFF;
+	background-color: #006086;
+}
+
+.ad-review:before {
+	display: block;
+	clear: both;
+	content: " ";
+	height: 1px;
+}
+
+.ad-review {
+	display: block;
+	float: left;
+	padding-right: 16px;
+}
+
+.review-text {
+	display: block;
+	float: left;
+	margin-top: 8px;
+	text-decoration: none;
+	font-size: 12px;
+	line-height: 20px;
+	color: #fff;
+	background-color: #0085ba;
+	padding: 0px 12px;
+}
+
+.review-text:hover {
+	color: #FFF;
+	background-color: #0095d1;
+}
+
+.tx-notice {
+	font-size: 16px;
+	padding: 0px;
+	margin: 0px;
+}

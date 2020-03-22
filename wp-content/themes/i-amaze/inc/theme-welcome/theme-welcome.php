@@ -30,12 +30,10 @@ add_action('admin_menu', 'welcome_screen_pages');
 function welcome_screen_pages() {
 	add_theme_page(
 		'Welcome To Welcome i-amaze',
-		'About i-amaze',
+		'About I-AMAZE',
 		'read',
 		'welcome-screen-about',
-		'welcome_screen_content',
-		'dashicons-awards', 
-		6 		
+		'welcome_screen_content'
 	);
 }
 
@@ -51,7 +49,7 @@ function welcome_screen_content() {
 	/* Urls */
 	$reviewURL = esc_url('//wordpress.org/support/theme/i-amaze/reviews/?filter=5');
 	$goPremiumURL = esc_url('//templatesnext.org/ispirit/landing/');
-	$videoguide = esc_url('//www.templatesnext.org/icreate/video-tutorials/');
+	$videoguide = esc_url('//templatesnext.in/i-amaze-documentation/');
 	$supportforum = esc_url('//wordpress.org/support/theme/i-amaze'); 
 	$toolkit = esc_url('//templatesnext.in/templatesnext-onepager/');
 	$fb_page = esc_url('//www.facebook.com/templatesnext/');
@@ -110,14 +108,12 @@ function welcome_screen_content() {
                 </div>
                 <div class="tx-wspace-12"></div>
                 <div class="nx-admin-row">
-                <!-- 
                 	<div class="one-four-col">
                     	<a href="<?php echo $videoguide; ?>" target="_blank">
                             <div class="nx-dash"><span class="dashicons dashicons-video-alt2"></span></div>
-                            <h3 class="tx-admin-link"><?php _e( 'Video Guide', 'i-amaze' ); ?></h3>
+                            <h3 class="tx-admin-link"><?php _e( 'Documentation', 'i-amaze' ); ?></h3>
                         </a>
                     </div>
-               -->     
                 	<div class="one-four-col">
                     	<a href="<?php echo $supportforum; ?>" target="_blank">
                             <div class="nx-dash"><span class="dashicons dashicons-format-chat"></span></div>

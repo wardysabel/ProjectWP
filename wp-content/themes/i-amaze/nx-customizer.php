@@ -120,7 +120,7 @@ function iamaze_add_panels_and_sections( $wp_customize ) {
 		'priority'    => 130,
 		'title'       => __( 'Responsive Menu', 'i-amaze' ),
 		'description' => __( 'Responsive Menu Options', 'i-amaze' ),
-	) );		
+	));	
 
     /**
      * Add Sections
@@ -130,6 +130,18 @@ function iamaze_add_panels_and_sections( $wp_customize ) {
         'description' => '',
         'priority' => 130,
     ));
+
+	$wp_customize->add_section( 'topbar', array(
+		'priority'    => 131,
+		'title'       => __( 'Topbar Options', 'i-amaze' ),
+		'description' => __( 'Topbar Options', 'i-amaze' ),
+	));	
+	
+	$wp_customize->add_section( 'header', array(
+		'priority'    => 132,
+		'title'       => __( 'Header Options', 'i-amaze' ),
+		'description' => __( 'Header Options', 'i-amaze' ),
+	));			
 	
 	$wp_customize->add_section('slides', array(
         'title'    => __('Slides', 'i-amaze'),
@@ -151,7 +163,7 @@ function iamaze_add_panels_and_sections( $wp_customize ) {
     ));		
 	
     $wp_customize->add_section('blogpage', array(
-        'title'    => __('Default Blog Page', 'i-amaze'),
+        'title'    => __('Default Blog/Front Page', 'i-amaze'),
         'description' => '',
         'priority' => 130,
     ));	
@@ -159,19 +171,32 @@ function iamaze_add_panels_and_sections( $wp_customize ) {
 	// slider sections
 	
 	$wp_customize->add_section('slidersettings', array(
-        'title'    => __('Slide Settings', 'i-amaze'),
+        'title'    => __('Slider Settings', 'i-amaze'),
         'description' => '',
         'panel' => 'slider',		
         'priority' => 140,
-    ));		
+    ));	
+	
+	$wp_customize->add_section('slideradvanced', array(
+        'title'    => __('Advanced Settings', 'i-amaze'),
+        'description' => '',
+        'panel' => 'slider',		
+        'priority' => 141,
+    ));			
 	
 	// promo sections
 	
 	$wp_customize->add_section('nxpromo', array(
         'title'    => __('More About i-amaze', 'i-amaze'),
         'description' => '',
-        'priority' => 170,
-    ));	
+        'priority' => 200,
+    ));
+	
+	$wp_customize->add_section('demosetup', array(
+        'title'    => __('Ready To Use Layouts', 'i-amaze'),
+        'description' => '',
+        'priority' => 199,
+    ));		
 	
 	// Responsive Menu sections
 	
@@ -187,33 +212,172 @@ function iamaze_add_panels_and_sections( $wp_customize ) {
         'panel' => 'rmenu',
         'description' => '',
         'priority' => 180,
-    ));						
+    ));	
+	
+    $wp_customize->add_section('fonts', array(
+        'title'    => __('Fonts', 'i-amaze'),
+        'description' => '',
+        'priority' => 199,
+    ));
+
+	// WooCommerce Settings
+    $wp_customize->add_section('woocomm', array(
+        'title'    => __('WooCommerce Theme Options', 'i-amaze'),
+        'description' => '',
+        'priority' => 191,
+    ));		
 	
 }
 
 
 function iamaze_custom_setting( $controls ) {
+
 	
+
+	/**************************************
+	Topbar section
+	***************************************/	
+	
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'wide_topbar',
+		'label'       => __( 'Turn ON Wide Topbar', 'i-amaze' ),
+		'description' => __( 'Increase topbar height', 'i-amaze' ),
+		'section'     => 'topbar',
+		'default'     => 0,
+		'priority'    => 1,
+	);
+		
     $controls[] = array(
         'type'     => 'text',
         'settings'  => 'top_phone',
         'label'    => __( 'Phone Number', 'i-amaze' ),
-        'section'  => 'basic',
+        'section'  => 'topbar',
         'default'  => '1-000-123-4567',
         'priority' => 1,
-		'description' => __( 'Phone number that appears on top bar.', 'i-amaze' ),
+		'description' => __( 'Phone number that appears on the topbar. Do not use space or + sign for clickable number.', 'i-amaze' ),
     );
 	
     $controls[] = array(
         'type'     => 'text',
         'settings'  => 'top_email',
         'label'    => __( 'Email Address', 'i-amaze' ),
-        'section'  => 'basic',
+        'section'  => 'topbar',
         'default'  => 'email@example.com',
         'priority' => 1,
 		'description' => __( 'Email Id that appears on top bar.', 'i-amaze' ),		
     );
+	
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'clickable_phnem',
+		'label'       => __( 'Clickable Phone And Email', 'i-amaze' ),
+		'description' => __( 'Phone will open in WhatsApp and email in email client.', 'i-amaze' ),
+		'section'     => 'topbar',
+		'default'     => 0,
+		'priority'    => 1,
+	);
+		
+	// social links
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_facebook',
+        'label'    => __( 'Facebook', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => esc_url('https://www.facebook.com/'),
+        'priority' => 1,
+    );	
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_twitter',
+        'label'    => __( 'Twitter', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => esc_url('https://www.twitter.com/'),
+        'priority' => 1,
+    );
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_flickr',
+        'label'    => __( 'Flickr', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => '',
+        'priority' => 1,
+    );	
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_feed',
+        'label'    => __( 'RSS', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => '',
+        'priority' => 1,
+    );	
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_instagram',
+        'label'    => __( 'Instagram', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => esc_url('https://www.instagram.com/'),
+        'priority' => 1,
+    );	
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_googleplus',
+        'label'    => __( 'Google Plus', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => '',
+        'priority' => 1,
+    );	
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_youtube',
+        'label'    => __( 'YouTube', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => esc_url('https://www.youtube.com/'),
+        'priority' => 1,
+    );
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_pinterest',
+        'label'    => __( 'Pinterest', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => '',
+        'priority' => 1,
+    );	
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'itrans_social_linkedin',
+        'label'    => __( 'Linkedin', 'i-amaze' ),
+        'section'  => 'topbar',
+        'default'  => '',
+        'priority' => 1,
+    );		
 
+	/**************************************
+	Header section
+	***************************************/
+	
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'show_search',
+		'label'       => __( 'Show Search', 'i-amaze' ),
+		'description' => __( 'Show search option on main navigation', 'i-amaze' ),
+		'section'     => 'header',
+		'default'     => 1,
+		'priority'    => 3,
+	);
+	
+	/********* Header ends ********/
+		
+	
 	$controls[] = array(
 		'type'        => 'upload',
 		'settings'     => 'logo-trans',
@@ -223,26 +387,6 @@ function iamaze_custom_setting( $controls ) {
 		'default'     => '',		
 		'priority'    => 3,
 	);
-	
-	$controls[] = array(
-		'type'        => 'switch',
-		'settings'     => 'show_search',
-		'label'       => __( 'Show Search', 'i-amaze' ),
-		'description' => __( 'Show search option on main navigation', 'i-amaze' ),
-		'section'     => 'basic',
-		'default'     => 1,
-		'priority'    => 3,
-	);
-	
-	$controls[] = array(
-		'type'        => 'switch',
-		'settings'     => 'pre_loader',
-		'label'       => __( 'Turn ON Page Preloader', 'i-amaze' ),
-		'description' => __( 'Turn ON/OFF loding animation before page load', 'i-amaze' ),
-		'section'     => 'basic',
-		'default'     => 0,		
-		'priority'    => 3,
-	);				
 	
 	$controls[] = array(
 		'type'        => 'color',
@@ -288,88 +432,16 @@ function iamaze_custom_setting( $controls ) {
 		'priority'    => 4,
 	);
 	
-	// social links
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'pre_loader',
+		'label'       => __( 'Turn ON Page Preloader', 'i-amaze' ),
+		'description' => __( 'Turn ON/OFF loding animation before page load', 'i-amaze' ),
+		'section'     => 'layout',
+		'default'     => 1,		
+		'priority'    => 5,
+	);		
 	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_facebook',
-        'label'    => __( 'Facebook', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );	
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_twitter',
-        'label'    => __( 'Twitter', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_flickr',
-        'label'    => __( 'Flickr', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );	
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_feed',
-        'label'    => __( 'RSS', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );	
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_instagram',
-        'label'    => __( 'Instagram', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );	
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_googleplus',
-        'label'    => __( 'Google Plus', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );	
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_youtube',
-        'label'    => __( 'YouTube', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_pinterest',
-        'label'    => __( 'Pinterest', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );	
-	
-    $controls[] = array(
-        'type'     => 'text',
-        'settings'  => 'itrans_social_linkedin',
-        'label'    => __( 'Linkedin', 'i-amaze' ),
-        'section'  => 'social',
-        'default'  => '#',
-        'priority' => 1,
-    );	
 	
 	// Slider
 
@@ -398,7 +470,7 @@ function iamaze_custom_setting( $controls ) {
 		'default'     => 1,			
 		'priority'    => 4,
 	);
-	
+	/*
 	$controls[] = array(
 		'type'        => 'switch',
 		'settings'     => 'slider_overlay',
@@ -408,6 +480,104 @@ function iamaze_custom_setting( $controls ) {
 		'default'     => 1,
 		'priority'    => 4,
 	);	
+	*/
+	$controls[] = array(
+		'type'        => 'select',
+		'settings'     => 'slider_transition',
+		'label'       => __( 'Transition Effect', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'default'     => 'fadeUp',
+		'priority'    => 2,
+		'choices'     => array(
+			'default' 		=> 'Default',
+			'fade' 			=> 'Fade',
+			'backSlide' 	=> 'Back Slide',
+			'goDown' 		=> 'Go Down',
+			'fadeUp' 		=> 'Fade Up',			
+		),
+		'priority'    => 4,			
+	);	
+	$controls[] = array(
+		'type'        => 'radio-buttonset',
+		'settings'     => 'slider_overlay',
+		'label'       => __( 'Slider Overlay Layer', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'choices'     => array(
+							'0' => esc_html__( 'None', 'i-amaze' ),	
+							'1' => esc_html__( 'Pattern', 'i-amaze' ),
+							'2' => esc_html__( 'colored', 'i-amaze' ),
+							'3' => esc_html__( 'gradient', 'i-amaze' ),
+		),		
+		'default'     => '0',
+		'priority'    => 4,				
+	);
+	$controls[] = array(
+		'type'        	=> 'color',
+		'settings'     	=> 'slider_overlay_color',
+		'label'       	=> __( 'Overlay Color', 'i-amaze' ),
+		'section'     	=> 'slidersettings',
+		'default'     	=> 'rgba(0,0,0,.48)',
+		'priority'    	=> 4,
+		'choices'     	=> array(
+							'alpha' => true,
+						),		
+		/*
+		'active_callback' => array(
+								array( 'setting' => 'itrans_overlay', 'operator' => '==', 'value' => 'nxs-gradient' ),
+							),		
+		*/
+		'active_callback' => 'iamaze_nxs_colored',
+	);				
+	$controls[] = array(
+		'type'        	=> 'color',
+		'settings'     	=> 'slider_overlay_color_1',
+		'label'       	=> __( 'Overlay Gradient Color 1', 'i-amaze' ),
+		'section'     	=> 'slidersettings',
+		'default'     	=> 'rgba(231,14,119,.72)',
+		'priority'    	=> 4,
+		'choices'     	=> array(
+							'alpha' => true,
+						),		
+		/*
+		'active_callback' => array(
+								array( 'setting' => 'itrans_overlay', 'operator' => '==', 'value' => 'nxs-gradient' ),
+							),		
+		*/
+		'active_callback' => 'iamaze_nxs_gradient',
+	);		
+	$controls[] = array(
+		'type'        	=> 'color',
+		'settings'     	=> 'slider_overlay_color_2',
+		'label'       	=> __( 'Overlay Gradient Color 2', 'i-amaze' ),
+		'section'     	=> 'slidersettings',
+		'default'     	=> 'rgba(250,162,20,.72)',
+		'priority'    	=> 4,
+		'choices'     	=> array(
+							'alpha' => true,
+						),		
+		/*
+		'active_callback' => array(
+								array( 'setting' => 'itrans_overlay', 'operator' => '==', 'value' => 'nxs-gradient' ),
+							),		
+		*/
+		'active_callback' => 'iamaze_nxs_gradient',
+	);	
+	$controls[] = array(
+		'type'        => 'slider',
+		'settings'    => 'slider_overlay_gradient_angle',
+		'label'       => __( 'Gradient Angle', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'default'     => 135,
+		'choices'     => array(
+						'min'  => '0',
+						'max'  => '360',
+						'step' => '1',
+					),
+		'active_callback' => 'iamaze_nxs_gradient',	
+		'priority'    	=> 4,					
+	);	
+		
+	
 	
 	$controls[] = array(
 		'type'        => 'switch',
@@ -420,6 +590,15 @@ function iamaze_custom_setting( $controls ) {
 	);	
 	
 	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'trans_header',
+		'label'       => __( 'Turn On/Off Transparent Header On Front Slider', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'default'     => 1,
+		'priority'    => 5,
+	);		
+	
+	$controls[] = array(
 		'type'        => 'slider',
 		'settings'    => 'slider_height',
 		'label'       => __( 'Slider Height (in %)', 'i-amaze' ),
@@ -430,7 +609,204 @@ function iamaze_custom_setting( $controls ) {
 			'max'  => '100',
 			'step' => '1',
 		),
-	);				
+	);
+	
+	$controls[] = array(
+		'type'        => 'radio',
+		'settings'    => 'itrans_style',
+		'label'       => __( 'Slider Style', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'default'     => 'nxs-amaze18',
+		'priority'    => 4,
+		'choices'     => array(
+			'nxs-default'   => esc_attr__( 'Default', 'i-amaze' ),
+			'nxs-amaze18' => esc_attr__( 'Amaze 18', 'i-amaze' ),
+		),
+	);
+	
+	$controls[] = array(
+		'type'        => 'slider',
+		'settings'    => 'slider_reduction',
+		'label'       => __( 'Reduction In px', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'description' => __( 'Amount of pixels to be reduced from % of slider height', 'i-amaze' ),		
+		'default'     => 0,
+		'choices'     => array(
+			'min'  => '0',
+			'max'  => '240',
+			'step' => '1',
+		),
+	);
+	
+	$controls[] = array(
+		'type'        => 'typography',
+		'settings'    => 'slider_title_font',
+		'label'       => __( 'Slide Title Font', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'default'     => array(
+			//'font-style'     => array( 'normal', 'bold', 'italic' ),
+			'font-family'    => 'Roboto',
+			'subsets'        => 'none',
+			'variant'        => '600',
+			'line-height'    => '1.2',
+			'letter-spacing' => '0',
+						
+		),		
+		'transport'   => 'auto',
+		'choices' => array(
+			'fonts' => array(
+				'google'   => array( 'popularity', 24 ),
+				'standard' => array(
+					'Georgia,Times,"Times New Roman",serif',
+					'Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif'
+				),
+			),
+		),	
+		'output'     => array(
+			array(
+				'element' => '#ibanner .da-slider .owl-item h2, #ibanner .nxs-amaze18 .da-slider .owl-item h2', 
+			),			
+		),
+	);
+	$controls[] = array(
+		'type'        => 'typography',
+		'settings'    => 'slider_desc_font',
+		'label'       => __( 'Slide Description Font', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'default'     => array(
+			//'font-style'     => array( 'normal', 'bold', 'italic' ),
+			'font-family'    => 'Roboto',
+			'subsets'        => 'none',
+			'variant'        => '400',
+			'line-height'    => '1.2',
+			'letter-spacing' => '0',
+		),		
+		'transport'   => 'auto',
+		'choices' => array(
+			'fonts' => array(
+				'google'   => array( 'popularity', 24 ),
+				'standard' => array(
+					'Georgia,Times,"Times New Roman",serif',
+					'Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif'
+				),
+			),
+		),	
+		'output'     => array(
+			array(
+				'element' => '.ibanner .da-slider .owl-item.active p, #ibanner .nxs-amaze18 .da-slider .owl-item.active p', 
+			),			
+		),
+	);
+	$controls[] = array(
+		'type'        => 'radio-buttonset',
+		'settings'     => 'slide_text_alignment',
+		'label'       => __( 'Content Alignment', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'choices'     => array(
+							'' => esc_html__( 'Default', 'i-amaze' ),	
+							'left' => esc_html__( 'left', 'i-amaze' ),
+							'center' => esc_html__( 'Center', 'i-amaze' ),
+							'right' => esc_html__( 'Right', 'i-amaze' ),
+		),		
+		'default'     => '',
+		'output' => array(
+			array(
+				'element'  => '#ibanner .nxs-amaze18 .nx-slider-container, #ibanner .nx-slider-container, #ibanner .nxs-amaze18 .nx-slider-container p, #ibanner .nx-slider-container p',
+				'property' => 'text-align',
+				'units'	   => '',
+			),
+		),		
+	);	
+	/*
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'slider_hide_bullets',
+		'label'       => __( 'Hide Navigation Bullets', 'i-amaze' ),
+		'section'     => 'slidersettings',
+		'default'     => 'block',
+		'choices'     => array(
+							'inline-block' => esc_html__( 'Show', 'i-amaze' ),
+							'none' => esc_html__( 'Hide', 'i-amaze' ),
+		),			
+		'output' => array(
+			array(
+				'element'  => '.ibanner .da-slider .owl-pagination, #ibanner .nxs-amaze18 .da-slider .owl-pagination',
+				'property' => 'display',
+				'units'	   => '',
+			),
+		),			
+	);		
+	*/
+	// slider advanced Settings 		
+	
+	$controls[] = array(
+		'type'        => 'select',
+		'settings'    => 'slider_sp_divider',
+		'label'       => __( 'Shape Divider', 'i-amaze' ),
+		'section'     => 'slideradvanced',
+		'description' => __( 'Shape Divider', 'i-amaze' ),		
+		'default'     => 0,
+		'choices'     => array(
+						'0'  						=> 'None',
+						'arrow'  					=> 'arrow',
+						'arrow-negative'			=> 'arrow-negative',
+						'book'  					=> 'book',
+						'book-negative'				=> 'book-negative',						
+						'clouds'  					=> 'clouds',
+						'curve'  					=> 'curve',
+						'curve-negative'			=> 'curve-negative',
+						'drops'  					=> 'drops',
+						'drops-negative'  			=> 'drops-negative',
+						'opacity-fan'				=> 'opacity-fan',
+						'opacity-tilt'				=> 'opacity-tilt',												
+						'mountains'  				=> 'mountains',
+						'pyramids'  				=> 'pyramids',
+						'split'  					=> 'split',
+						'tilt'  					=> 'tilt',
+						'triangle-negative'  		=> 'triangle-negative',
+						'triangle'  				=> 'triangle',						
+						'wave-brush'  				=> 'wave-brush',
+						'waves'  					=> 'waves',
+						'zigzag'  					=> 'zigzag',
+						'curve-asymmetrical'  		=> 'curve-asymmetrical',
+						'triangle-asymmetrical'  	=> 'triangle-asymmetrical',
+		),
+	);
+	
+	$controls[] = array(
+		'type'        => 'slider',
+		'settings'    => 'slider_sp_height',
+		'label'       => __( 'Height', 'i-amaze' ),
+		'section'     => 'slideradvanced',
+		'default'     => 100,
+		'choices'     => array(
+			'min'  => '0',
+			'max'  => '160',
+			'step' => '1',
+		),
+	);
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'slider_sp_flip',
+		'label'       => __( 'Flip Horizontal', 'i-amaze' ),
+		'section'     => 'slideradvanced',
+		'default'     => 0,
+	);
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'slider_sp_flip_v',
+		'label'       => __( 'Flip Vertical', 'i-amaze' ),
+		'section'     => 'slideradvanced',
+		'default'     => 0,
+	);	
+	$controls[] = array(
+		'type'        => 'color',
+		'settings'     => 'slider_sp_color',
+		'label'       => __( 'Color', 'i-amaze' ),
+		'section'     => 'slideradvanced',
+		'default'     => '#FFFFFF',
+	);		
+		
 	
 	// slides 	
 	$controls[] = array(
@@ -449,14 +825,14 @@ function iamaze_custom_setting( $controls ) {
 		'default'     => array(
 			array(
 				'itrans_slide_title' => __( 'Welcome To i-AMAZE', 'i-amaze' ),
-				'itrans_slide_desc'  => __( 'To start setting up i-one go to appearance &gt; customize.', 'i-amaze' ),
+				'itrans_slide_desc'  => __( 'To start setting up I-AMAZE go to appearance &gt; customize.', 'i-amaze' ),
 				'itrans_slide_linktext'  => __( 'Know More', 'i-amaze' ),
 				'itrans_slide_linkurl'  => '',
 				'itrans_slide_image'  =>  get_template_directory_uri() . '/images/slide1.jpg',												
 			),
 			array(
 				'itrans_slide_title' => __( 'Responsive & Touch Ready', 'i-amaze' ),
-				'itrans_slide_desc'  => __( 'i-one is 100% responsive and touch ready.', 'i-amaze' ),
+				'itrans_slide_desc'  => __( 'I-AMAZE is 100% responsive and touch ready.', 'i-amaze' ),
 				'itrans_slide_linktext'  => __( 'Know More', 'i-amaze' ),
 				'itrans_slide_linkurl'  => '',
 				'itrans_slide_image'  =>  get_template_directory_uri() . '/images/slide2.jpg',												
@@ -468,24 +844,28 @@ function iamaze_custom_setting( $controls ) {
 				'itrans_slide_linkurl'  => '',
 				'itrans_slide_image'  =>  get_template_directory_uri() . '/images/slide3.jpg',												
 			),
+			/*
 			array(
 				'itrans_slide_title' => __( 'Easy to Customize', 'i-amaze' ),
 				'itrans_slide_desc'  => __( 'All controls in one place, Setup your busines website in minutes..', 'i-amaze' ),
 				'itrans_slide_linktext'  => __( 'Know More', 'i-amaze' ),
 				'itrans_slide_linkurl'  => '',
 				'itrans_slide_image'  =>  get_template_directory_uri() . '/images/slide4.jpg',												
-			),									
+			),
+			*/									
 		),
 		'fields' => array(
 			'itrans_slide_title' => array(
 				'type'     => 'text',
 				'label'    => __( 'Title', 'i-amaze' ),
 				'default'  => '',
+				'description' => __( 'Supports [txo_themecolor] to apply theme color', 'i-amaze' ),
 			),
 			'itrans_slide_desc' => array(
 				'type'     => 'textarea',
 				'label'    => __( 'Description', 'i-amaze' ),
 				'default'  => '',
+				'description' => __( 'Supports [txo_themecolor] to apply theme color', 'i-amaze' ),				
 			),
 			'itrans_slide_linktext' => array(
 				'type'     => 'text',
@@ -515,7 +895,7 @@ function iamaze_custom_setting( $controls ) {
 		'label'       => __( 'Turn ON/OFF i-amaze Slider', 'i-amaze' ),
 		'description' => __( 'Turn Off or On to hide/show default i-amaze slider', 'i-amaze' ),
 		'section'     => 'blogpage',
-		'default'     => 0,
+		'default'     => 1,
 		'priority'    => 0,
 	);	
 	
@@ -540,6 +920,16 @@ function iamaze_custom_setting( $controls ) {
     );
 	
 	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'alt_menu',
+		'label'       => __( 'Turn ON Alternate Navigation', 'i-amaze' ),
+		'description' => __( 'Replaces main navigation with alternate navigation menu on front page.', 'i-amaze' ),
+		'section'     => 'blogpage',
+		'default'     => 0,
+		'priority'    => 4,
+	);		
+	
+	$controls[] = array(
 		'type'        => 'slider',
 		'settings'    => 'blog_header_height',
 		'label'       => __( 'Image/Videio Header Height (in %)', 'i-amaze' ),
@@ -552,6 +942,15 @@ function iamaze_custom_setting( $controls ) {
 		),
 		'priority'    => 10,
 	);
+	
+    $controls[] = array(
+        'type'     => 'text',
+        'settings'  => 'tagline_two',
+        'label'    => __( 'Secondary Tagline', 'i-amaze' ),
+        'section'  => 'title_tagline',
+        'default'  => '',
+        'priority' => 10,
+    );	
 	
 	$controls[] = array(
 		'type'        => 'switch',
@@ -639,7 +1038,7 @@ function iamaze_custom_setting( $controls ) {
 		'label' => __('Menu Open Direction', 'i-amaze'),
 		'description' => __('Select the direction from where menu will open.', 'i-amaze'),
 		'settings' => 'position',
-		'default' => 'left',
+		'default' => 'top',
 		'choices' => array('left' => 'Left','right' => 'Right', 'top' => 'Top' ),
 		'type' => 'select',
         'section'  => 'rmsettings',			
@@ -735,8 +1134,133 @@ function iamaze_custom_setting( $controls ) {
 		'choices' =>  array('yes' => __('Yes', 'i-amaze'),'no' => __('No', 'i-amaze')),
 		'type' => 'radio',
         'section'  => 'rmsettings',			
-	);	
+	);
 	
+	$controls[] = array(
+		'type'        => 'typography',
+		'settings'    => 'body_font',
+		'label'       => __( 'Body Font Style', 'i-amaze' ),
+		'description' => __( 'Content font style (Variant and Subsets are not used). Default font "Roboto" Default font "Open Sans", size "14"', 'i-amaze' ),
+		'section'     => 'fonts',
+		'default'     => array(
+			//'font-style'     => array( 'normal', 'bold', 'italic' ),
+			'font-family'    => 'Open Sans',
+			'font-size'      => '14',
+			//'color'          => '#575757',			
+			'subsets'        => 'none',
+		),
+		'priority'    => 1,
+		'choices' => array(
+			'fonts' => array(
+				'google'   => array( 'popularity', 50 ),
+				'standard' => array(
+					'Georgia,Times,"Times New Roman",serif',
+					'Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif'
+				),
+			),
+		),	
+	);
+	
+	$controls[] = array(
+		'type'        => 'typography',
+		'settings'    => 'title_font',
+		'label'       => __( 'Heading Font Style', 'i-amaze' ),
+		'description' => __( 'Title font style (Variant and Subsets are not used). Default font "Roboto"', 'i-amaze' ),
+		'section'     => 'fonts',
+		'default'     => array(
+			//'font-style'     => array( 'normal', 'bold', 'italic' ),
+			'font-family'    => 'Roboto',
+			'subsets'        => 'none',
+			'variant'        => '600',			
+		),
+		'priority'    => 1,
+		'choices' => array(
+			'fonts' => array(
+				'google'   => array( 'popularity', 50 ),
+				'standard' => array(
+					'Georgia,Times,"Times New Roman",serif',
+					'Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif'
+				),
+			),
+		),	
+	);
+	
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'uppercase_nav',
+		'label'       => __( 'All UPPERCASE Top Navigation', 'i-amaze' ),
+		'description' => __( 'Change all menu item on top navigation to UPPERCASE', 'i-amaze' ),
+		'section'     => 'fonts',
+		'default'     => 0,
+		'priority'    => 2,
+	);				
+	
+	/* WooCommerce Settings */
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'show_login',
+		'label'       => __( 'Hide/Show Topnav Login', 'i-amaze' ),
+		'description' => __( 'Turn ON or OFF user login menu item on top nav', 'i-amaze' ),
+		'section'     => 'woocomm',
+		'default'  	  => 0,		
+		'priority'    => 1,
+	);
+	
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'show_cart',
+		'label'       => __( 'Show/Hide Topnav Cart', 'i-amaze' ),
+		'description' => __( 'Turn ON or OFF cart from top nav', 'i-amaze' ),
+		'section'     => 'woocomm',
+		'default'     => 0,		
+		'priority'    => 1,
+	);
+	
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'product_search',
+		'label'       => __( 'Turn On/OFF Product Search', 'i-amaze' ),
+		'description' => __( 'Turn ON/OFF product only search.', 'i-amaze' ),
+		'section'     => 'woocomm',
+		'default'  	  => 0,		
+		'priority'    => 1,
+	);
+	
+	/*	
+	$controls[] = array(
+		'type'        => 'radio',
+		'settings'    => 'shop_header',
+		'label'       => __( 'Default Shop Page Header Options', 'i-amaze' ),
+		'section'     => 'woocomm',
+		'default'     => 'nxs-default',
+		'priority'    => 4,
+		'choices'     => array(
+			'nxs-default'   => esc_attr__( 'Default', 'i-amaze' ),
+			'nxs-amaze18' => esc_attr__( 'Amaze 18', 'i-amaze' ),
+		),
+	);
+		
+
+	$controls[] = array(
+		'type'        => 'switch',
+		'settings'     => 'infi_scroll',
+		'label'       => __( 'Turn On Infinite Scroll', 'i-amaze' ),
+		'description' => __( 'Turn on infinite scroll on product listing and search result pages.', 'i-amaze' ),
+		'section'     => 'woocomm',
+		'default'  	  => 0,		
+		'priority'    => 1,
+	);	
+	*/
+	
+	/*
+	$controls[] = array(
+		'type'        => 'custom',
+		'settings'    => 'demo_setup',
+		'section'     => 'demosetup',
+		'default'	  => '<div class="promo-box"><div class="promo-2">' . iamaze_demo_lauoutsCustomizer () . '</div>',
+		'priority' => 10,
+	);
+	*/
 	$controls[] = array(
 		'type'        => 'custom',
 		'settings'    => 'custom_demo',
@@ -758,9 +1282,49 @@ function iamaze_custom_setting( $controls ) {
 }
 add_filter( 'kirki/controls', 'iamaze_custom_setting' );
 
+function iamaze_demo_lauoutsCustomizer ()
+{
+	
+	$tgmpa_url = admin_url() . 'themes.php?page=tgmpa-install-plugins';
+	$ocdi_url = admin_url() . 'themes.php?page=pt-one-click-demo-import';
+	$return_string = '';	
+	
+	if ( (!function_exists( 'txo_sections_show' )) || (!class_exists( 'OCDI_Plugin' )) ) {
+		$return_string .= sprintf( __( '<div class="tx-rednotice">Make sure you have all the <a href="%s" target="_blank">recommended plugins</a> installed and active before importing demo contents and settings.</div>', 'i-amaze' ), esc_url($tgmpa_url) );
+	}
+	
+	if ( (!function_exists( 'txo_sections_show' )) ) {
+		$return_string .= sprintf( __( '<div class="txo-red">Plugin <a href="%s" target="_blank">TemplatesNext OnePager</a> not active.</div>', 'i-amaze' ), esc_url($tgmpa_url) );
+	}
+	
+	if ( (!class_exists( 'OCDI_Plugin' )) ) {
+		$return_string .= sprintf( __( '<div class="txo-red">Plugin <a href="%s" target="_blank">One Click Demo Import</a> not active.</div>', 'i-amaze' ), esc_url($tgmpa_url) );
+	}		
+	
+	$return_string .= '<div class="demo-wrap">';
+	$return_string .= '<a href="' . esc_url(admin_url()) . 'themes.php?page=pt-one-click-demo-import" target="_blank" class="tx-layout-link">' . __('I-AMAZE Demo Layouts', 'i-amaze') . '</a>';	
+	$return_string .= '</div>';
+	
+	return $return_string;
+}
 
+function iamaze_nxs_colored() {
+	//'setting' => 'itrans_overlay', 'operator' => '==', 'value' => 'nxs-gradient'
+	if ( get_theme_mod('slider_overlay') == '2' ) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
-
+function iamaze_nxs_gradient() {
+	//'setting' => 'itrans_overlay', 'operator' => '==', 'value' => 'nxs-gradient'
+	if ( get_theme_mod('slider_overlay') == '3' ) {
+		return true;
+	} else {
+		return false;
+	}
+}
 
 
 
