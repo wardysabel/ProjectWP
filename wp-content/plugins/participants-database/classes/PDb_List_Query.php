@@ -166,7 +166,17 @@ class PDb_List_Query {
      * a POST request will override any GET request on the same field, the two are 
      * not really meant to be combined
      */
-    $this->_add_filter_from_get();
+      
+    /**
+     * disables searches in the URL
+     * 
+     * @filter pdb-allow_get_searches
+     * @param bool default value
+     * @return bool true to allow
+     */  
+    if ( Participants_Db::apply_filters( 'allow_get_searches', true ) ) {
+      $this->_add_filter_from_get();
+    }
     $this->_add_filter_from_post();
 
     /*
@@ -958,11 +968,11 @@ class PDb_List_Query {
       return false;
     }
 
+    /*
+     * check if we have a valid column name
+     */
     $field_atts = Participants_Db::get_column( $column );
     if ( !is_object( $field_atts ) ) {
-      /*
-       * if the column is not valid skip this statement
-       */
       return false;
     }
 

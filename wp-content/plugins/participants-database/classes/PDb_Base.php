@@ -475,13 +475,34 @@ class PDb_Base {
     } elseif ( $post = get_page_by_path( $page ) ) {
       $id = $post->ID;
     } else {
+      // get the ID by the post slug
       global $wpdb;
       $id = $wpdb->get_var( $wpdb->prepare( "SELECT p.ID FROM $wpdb->posts p WHERE p.post_name = '%s' AND p.post_status = 'publish'", trim( $page, '/ ' ) ) );
-//      error_log(__METHOD__.' query: '.$wpdb->last_query);
+      
     }
     if ( $id )
-      $permalink = get_permalink( $id );
+      $permalink = self::get_permalink( $id );
     return $permalink;
+  }
+  
+  /**
+   * provides the permalink for a WP page or post given the ID
+   * 
+   * this implements a filter to allow a multilingual plugin to alter the ID
+   * 
+   * @param int $id the post ID
+   * @return string the permalink
+   */
+  public static function get_permalink( $id )
+  {
+    /**
+     * allow a multilingual plugin to set the language post id
+     * 
+     * @filter pdb-lang_page_id
+     * @param int the post ID
+     * @return int the language page ID
+     */
+    return get_permalink( Participants_Db::apply_filters( 'lang_page_id', $id ) );
   }
 
   /**
@@ -1832,6 +1853,7 @@ class PDb_Base {
   public static function is_multipage_form()
   {
     $form_status = Participants_Db::$session->get( 'form_status' );
+    
     return stripos( $form_status, 'multipage' ) !== false;
   }
 

@@ -27,7 +27,7 @@ PDbManageFields = (function ($) {
     var el = $(this);
     var row_id = el.data('thing-name').replace(/^delete_/, '');
     var parent = el.closest('.def-line');
-    var name = parent.find('.title-attribute input').val();
+    var name = parent.find('.title-attribute input').data('title');
     var thing = el.data('thing');
     var group = parent.find('td.group select').val(); // set the group ID and get the field count for the group
     var group_id = group ? group : row_id;
@@ -230,10 +230,10 @@ PDbManageFields = (function ($) {
       return {
         hide : tabEffect,
         show : tabEffect,
-        active : $.cookie(lastTab),
+        active : Cookies.get(lastTab),
         activate : function (event, ui) {
-          $.cookie(lastTab, ui.newTab.index(), {
-            expires : 365
+          Cookies.set(lastTab, ui.newTab.index(), {
+            expires : 365, path : ''
           });
         }
       };
