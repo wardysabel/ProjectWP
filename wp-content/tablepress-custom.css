@@ -5,18 +5,82 @@
 	font-weight: bold;
 }
 
-.tablepress-id-Cat .row-hover tr:hover td {
-	background-color: white;
+.tablepress-id-wildlife .row-hover tr:hover td {
+	background-color: lightgray;
 	color: black;
 }
 
-.tablepress-id-Cat .column-3 {
+.tablepress-id-Cat .column-3 a {
+	border: 1px solid black;
 	font-weight: bold;
-	text-decoration: underline;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.tablepress-id-Cat .column-3 {
+	text-align: center;
+	vertical-align: middle;
 }
 
 .dataTables_filter {
 	float: none;
 	color: black;
 	padding-bottom: 20px;
+}
+
+.tablepress-id-wildlife .column-1 {
+	width: 235px;
+}
+
+.tablepress-id-wildlife .column-2 {
+	width: 125px;
+}
+
+.tablepress-id-wildlife .column-3 {
+	width: 225px;
+}
+
+.tablepress-id-wildlife .column-4 {
+	width: 150px;
+}
+
+.tablepress-id-wildlife .column-5 {
+	width: 225px;
+}
+
+.tablepress-id-wildlife .column-4 {
+	font-weight: bold;
+}
+
+.tablepress .odd td {
+	background-color: white;
+	color: black;
+}
+
+.tablepress .even td {
+	background-color: white;
+	color: black;
+}
+
+.tablepress-id-wildlife .row-1 .column-4 {
+	font-weight: bold;
+	text-decoration: none;
+}
+
+body a:hover {
+	color: blue;
+}
+
+.tablepress-id-wildlife .column-4 a {
+	border: 1px solid black;
+	font-weight: bold;
+	padding: 25px;
+	border-radius: 10px;
+	background-color: white;
+}
+
+.tablepress-id-wildlife .column-4 {
+	text-align: center;
+	vertical-align: middle;
 }
