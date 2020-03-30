@@ -68,6 +68,7 @@ define('NONCE_SALT',       'put your unique phrase here');
  */
 $table_prefix  = 'wp_';
 
+
 /**
  * For developers: WordPress debugging mode.
  *
