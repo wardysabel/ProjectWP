@@ -1042,6 +1042,9 @@ class Element_Section extends Element_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-heading-title' => 'color: {{VALUE}};',
 				],
+				'condition' => [
+					'heading_color!' => '',
+				],
 				'separator' => 'none',
 			]
 		);
@@ -1055,6 +1058,9 @@ class Element_Section extends Element_Base {
 				'selectors' => [
 					'{{WRAPPER}}' => 'color: {{VALUE}};',
 				],
+				'condition' => [
+					'color_text!' => '',
+				],
 			]
 		);
 
@@ -1067,6 +1073,9 @@ class Element_Section extends Element_Base {
 				'selectors' => [
 					'{{WRAPPER}} a' => 'color: {{VALUE}};',
 				],
+				'condition' => [
+					'color_link!' => '',
+				],
 			]
 		);
 
@@ -1078,6 +1087,9 @@ class Element_Section extends Element_Base {
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} a:hover' => 'color: {{VALUE}};',
+				],
+				'condition' => [
+					'color_link_hover!' => '',
 				],
 			]
 		);
@@ -1103,6 +1115,9 @@ class Element_Section extends Element_Base {
 				],
 				'selectors' => [
 					'{{WRAPPER}} > .elementor-container' => 'text-align: {{VALUE}};',
+				],
+				'condition' => [
+					'text_align!' => '',
 				],
 			]
 		);
@@ -1336,7 +1351,9 @@ class Element_Section extends Element_Base {
 
 		$this->end_controls_section();
 
-		Plugin::$instance->controls_manager->add_custom_attributes_controls( $this );
+		if ( ! Utils::has_pro() ) {
+			Plugin::$instance->controls_manager->add_custom_attributes_controls( $this );
+		}
 
 		Plugin::$instance->controls_manager->add_custom_css_controls( $this );
 	}

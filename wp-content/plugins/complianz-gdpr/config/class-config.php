@@ -631,6 +631,8 @@ if ( ! class_exists( "cmplz_config" ) ) {
 		public $eu_countries;
 		public $premium_geo_ip;
 		public $premium_ab_testing;
+		public $premium_privacypolicy;
+		public $premium_disclaimer;
 		public $collected_info_children;
 
 		function __construct() {
@@ -649,9 +651,8 @@ if ( ! class_exists( "cmplz_config" ) ) {
 			 * 4: new questions
 			 * 5: UK as separate region
 			 * 6: CA as separate region
-			 * 7: Impressum in germany
 			 * */
-			define( 'CMPLZ_LEGAL_VERSION', '7' );
+			define( 'CMPLZ_LEGAL_VERSION', '6' );
 
 			//common options type
 			$this->yes_no = array(
@@ -669,7 +670,16 @@ if ( ! class_exists( "cmplz_config" ) ) {
 					'complianz-gdpr' ),
 					'<a href="https://complianz.io" target="_blank">', '</a>' )
 				  . "&nbsp;";
-
+			$this->premium_privacypolicy
+				= sprintf( __( "A comprehensive, legally validated privacy statement is part of the %spremium%s plugin.",
+					'complianz-gdpr' ),
+					'<a href="https://complianz.io" target="_blank">', '</a>' )
+				  . "&nbsp;";
+			$this->premium_disclaimer
+				= sprintf( __( "A comprehensive, legally validated disclaimer is part of the %spremium%s plugin.",
+					'complianz-gdpr' ),
+					'<a href="https://complianz.io" target="_blank">', '</a>' )
+				  . "&nbsp;";
 
 			/* config files */
 			require_once( cmplz_path . '/config/countries.php' );
@@ -695,9 +705,13 @@ if ( ! class_exists( "cmplz_config" ) ) {
 				require_once( cmplz_path . '/pro/config/steps.php' );
 				require_once( cmplz_path . '/pro/config/warnings.php' );
 				require_once( cmplz_path . '/pro/config/questions-wizard.php' );
-				require_once( cmplz_path . '/pro/config/documents/documents.php' );
-				require_once( cmplz_path . '/pro/config/EU/questions-dataleak.php' );
-				require_once( cmplz_path . '/pro/config/US/questions-dataleak.php' );
+				require_once( cmplz_path
+				              . '/pro/config/documents/documents.php' );
+
+				require_once( cmplz_path
+				              . '/pro/config/EU/questions-dataleak.php' );
+				require_once( cmplz_path
+				              . '/pro/config/US/questions-dataleak.php' );
 				require_once( cmplz_path
 				              . '/pro/config/CA/questions-dataleak.php' );
 				require_once( cmplz_path
@@ -736,8 +750,8 @@ if ( ! class_exists( "cmplz_config" ) ) {
 				require_once( cmplz_path
 				              . '/pro/config/documents/disclaimer.php' );
 
-				require_once( cmplz_path . '/pro/config/documents/EU/privacy-policy.php' );
-				require_once( cmplz_path . '/pro/config/documents/EU/impressum.php' );
+				require_once( cmplz_path
+				              . '/pro/config/documents/EU/privacy-policy.php' );
 				require_once( cmplz_path
 				              . '/pro/config/documents/EU/processing-agreement.php' );
 				require_once( cmplz_path
@@ -783,6 +797,26 @@ if ( ! class_exists( "cmplz_config" ) ) {
 			return array_search( $id, array_column( $steps, 'id' ) ) + 1;
 		}
 
+		/**
+		 * Create a generic read more text with link for help texts.
+		 *
+		 * @param string $url
+		 * @param bool   $add_space
+		 *
+		 * @return string
+		 */
+
+		public function read_more( $url, $add_space = true ) {
+			$html
+				= sprintf( __( "For more information on this subject, please read this %sarticle%s",
+				'complianz-gdpr' ), '<a target="_blank" href="' . $url . '">',
+				'</a>' );
+			if ( $add_space ) {
+				$html = '&nbsp;' . $html;
+			}
+
+			return $html;
+		}
 
 		public function fields(
 			$page = false, $step = false, $section = false,
@@ -839,6 +873,7 @@ if ( ! class_exists( "cmplz_config" ) ) {
 		public function init() {
 
 			$this->fields = apply_filters( 'cmplz_fields', $this->fields );
+
 			if ( ! is_admin() ) {
 				$regions = cmplz_get_regions(true);
 				foreach ( $regions as $region => $label ) {

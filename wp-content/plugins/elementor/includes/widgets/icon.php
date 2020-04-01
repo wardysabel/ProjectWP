@@ -307,7 +307,6 @@ class Widget_Icon extends Widget_Base {
 				'selectors' => [
 					'{{WRAPPER}} .elementor-icon' => 'font-size: {{SIZE}}{{UNIT}};',
 				],
-				'separator' => 'before',
 			]
 		);
 

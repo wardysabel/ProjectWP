@@ -88,8 +88,7 @@ $this->fields = $this->fields + array(
 			               . '#cmplz-document, #cmplz-document p, #cmplz-document span, #cmplz-document li {} /* text */'
 			               . "\n"
 			               . '#cmplz-document table {} /* table styles */'
-			               . "\n" . '#cmplz-document td {} /* row styles */'
-			               . "\n" . '#cmplz-document.impressum, #cmplz-document.cookie-statement, #cmplz-document.privacy-statement {} /* styles for impressum */',
+			               . "\n" . '#cmplz-document td {} /* row styles */',
 			'help'      => __( 'Add your own custom document css here',
 				'complianz-gdpr' ),
 			'table'     => true,
@@ -157,6 +156,7 @@ $this->fields = $this->fields + array(
 			'disabled' => false,
 			'default'  => false,
 		),
+
 
 		'notification_from_email' => array(
 			'source'             => 'settings',

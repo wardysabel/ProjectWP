@@ -9,7 +9,7 @@ function cmplz_filter_fields( $fields ) {
 	 * */
 	if ( cmplz_has_region( 'us' )
 	     || ( cmplz_has_region( 'ca' )
-	          && cmplz_get_value( 'privacy-statement' ) === 'generated' )
+	          && cmplz_get_value( 'privacy-statement' ) === 'yes' )
 	) {
 		foreach ( COMPLIANZ::$config->purposes as $key => $label ) {
 
@@ -19,7 +19,7 @@ function cmplz_filter_fields( $fields ) {
 							'master_label' => __( "Purpose:", 'complianz-gdpr' )
 							                  . " " . $label,
 							'step' => STEP_COMPANY,
-							'section' => 8,
+							'section' => 7,
 							'source' => 'wizard',
 							'type' => 'multicheckbox',
 							'default' => '',

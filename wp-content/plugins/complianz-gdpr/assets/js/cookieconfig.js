@@ -48,6 +48,7 @@ jQuery(document).ready(function ($) {
 	var ccName;
 	var ccStatsEnabled = false;
 	var ccAllEnabled = false;
+	var ccPrivacyLink = '';
 	var waitingInlineScripts = [];
 	var waitingScripts = [];
 	var placeholderClassIndex = 0;
@@ -92,7 +93,9 @@ jQuery(document).ready(function ($) {
 			} else {
 				blockedContentContainer = $(this);
 			}
+
 			var curIndex = blockedContentContainer.data('placeholderClassIndex');
+
 			//if the blocked content container class is already added, don't add it again
 			if (typeof curIndex === 'undefined') {
 				placeholderClassIndex++;
@@ -186,7 +189,7 @@ jQuery(document).ready(function ($) {
 		}, 2000);
 	}
 
-	//}else{console.log('no btn')}
+
 	/**
 	 * Enable scripts that were blocked
 	 *
@@ -601,6 +604,7 @@ jQuery(document).ready(function ($) {
 				complianz.readmore = complianz.readmore_optout;
 				complianz.dismiss = complianz.accept_informational;
 				complianz.message = complianz.message_optout;
+				ccPrivacyLink = complianz.privacy_link[complianz.region];
 				cmplz_cookie_warning();
 			} else {
 				console.log('other consenttype, no cookie warning');
@@ -728,7 +732,7 @@ jQuery(document).ready(function ($) {
 				"allow": '<a aria-label="{{allow}}" href="#" role="button" tabindex="0" class="cc-btn cc-allow">{{allow}}</a>',
 				"save": '<a aria-label="{{save_preferences}}" href="#" tabindex="0" class="cc-btn cc-save">{{save_preferences}}</a>',
 				"categories-checkboxes": complianz.categories,
-				"messagelink": '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="{{link}}" tabindex="0" class="cc-link" href="{{href}}">{{link}}</a>' + complianz.privacy_link[complianz.region] + '</span>',
+				"messagelink": '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="{{link}}" tabindex="0" class="cc-link" href="{{href}}">{{link}}</a>' + ccPrivacyLink + '</span>',
 			},
 			"content": {
 				"save_preferences": complianz.save_preferences,
@@ -1210,13 +1214,7 @@ jQuery(document).ready(function ($) {
 	 * */
 
 	function cmplzIntegrationsInit() {
-		var cookiesToSet = complianz.set_cookies;
-		//check if we have scripts that need to be set to true on init.
-		for (var key in cookiesToSet) {
-			if (cookiesToSet.hasOwnProperty(key) && cookiesToSet[key][1] === '1') {
-				cmplzSetCookie(key, cookiesToSet[key][1], 0);
-			}
-		}
+		cmplzIntegrationsRevoke();
 	}
 
 	/**
@@ -1225,6 +1223,7 @@ jQuery(document).ready(function ($) {
 	 * */
 	function cmplzIntegrationsRevoke() {
 		var cookiesToSet = complianz.set_cookies;
+		//check if we have waiting scripts
 		for (var key in cookiesToSet) {
 			if (cookiesToSet.hasOwnProperty(key)) {
 				cmplzSetCookie(key, cookiesToSet[key][1], 0);
@@ -1239,6 +1238,7 @@ jQuery(document).ready(function ($) {
 
 	function cmplzIntegrationsConsent() {
 		var cookiesToSet = complianz.set_cookies;
+		//check if we have waiting scripts
 		for (var key in cookiesToSet) {
 			if (cookiesToSet.hasOwnProperty(key)) {
 				cmplzSetCookie(key, cookiesToSet[key][0], complianz.cookie_expiry);

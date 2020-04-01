@@ -25,29 +25,103 @@ defined( 'ABSPATH' ) or die( "you do not have acces to this page!" );
 
 // MY COMPANY SECTION
 $this->fields = $this->fields + array(
-
-		'regions'                     => array(
+		'cookie-policy-type' => array(
 			'step'     => STEP_COMPANY,
 			'section'  => 1,
 			'source'   => 'wizard',
+			'default'  => 'default',
+			'type'     => 'select',
+			'options'  => array(
+				'default' => __( "Auto generated cookie policy",
+					'complianz-gdpr' ),
+				'custom'  => __( "Custom cookie policy", 'complianz-gdpr' ),
+			),
+			'label'    => __( "Select if you want to use the auto generated cookie policy or your own",
+				'complianz-gdpr' ),
+			'required' => true,
+			'help'     => __( 'Complianz will generate the cookie policy based on your cookies and the answers in the wizard, but you can also create your own, custom document.',
+				"complianz-gdpr" ),
+			'time'     => CMPLZ_MINUTES_PER_QUESTION,
+		),
+
+		'custom-cookie-policy-url' => array(
+			'step'      => STEP_COMPANY,
+			'section'   => 1,
+			'source'    => 'wizard',
+			'type'      => 'url',
+			'options'   => array(
+				'default' => __( "Auto generated cookie policy",
+					'complianz-gdpr' ),
+				'custom'  => __( "Custom cookie policy", 'complianz-gdpr' ),
+			),
+			'condition' => array(
+				'cookie-policy-type' => 'custom',
+			),
+			'label'     => __( "Enter the URL to your custom cookie policy",
+				'complianz-gdpr' ),
+			'required'  => true,
+			'time'      => CMPLZ_MINUTES_PER_QUESTION,
+		),
+
+		'privacy-statement' => array(
+			'step'     => STEP_COMPANY,
+			'section'  => 1,
+			'disabled' => true,
+			'source'   => 'wizard',
+			'type'     => 'radio',
+			'default'  => 'no',
+			'label'    => __( "Do you want to add a privacy statement on your site?",
+				'complianz-gdpr' ),
+			'options'  => $this->yes_no,
+			'comment'  => $this->premium_privacypolicy,
+			'required' => false,
+			'time'     => CMPLZ_MINUTES_PER_QUESTION,
+		),
+
+		'disclaimer' => array(
+			'step'     => STEP_COMPANY,
+			'section'  => 1,
+			'source'   => 'wizard',
+			'default'  => 'no',
+			'disabled' => true,
+			'type'     => 'radio',
+			'options'  => $this->yes_no,
+			'label'    => __( "Do you want to add a disclaimer on your site?",
+				'complianz-gdpr' ),
+			'comment'  => $this->premium_disclaimer,
+			'required' => false,
+			'time'     => CMPLZ_MINUTES_PER_QUESTION,
+		),
+
+		'notice_missing_privacy_page' => array(
+			'step'     => STEP_COMPANY,
+			'section'  => 3,
+			'source'   => 'wizard',
+			'type'     => 'callback',
+			'callback' => 'notice_missing_privacy_page',
+			'time'     => 0,
+		),
+		'regions'                     => array(
+			'step'     => STEP_COMPANY,
+			'section'  => 2,
+			'source'   => 'wizard',
 			'default'  => '',
 			'type'     => 'radio',
-			'revoke_consent_onchange' => true,
 			'options'  => array(
-				'eu' => __( 'GDPR (European Union)',
+				'eu' => __( 'European Union (GDPR), excluding the UK',
 					'complianz-gdpr' ),
-				'uk' => __( 'UK-GDPR, PECR, Data Protection Act (United Kingdom)',
+				'uk' => __( 'United Kingdom (UK-GDPR, PECR, Data Protection Act)',
 					'complianz-gdpr' ),
-				'us' => __( 'CCPA / United States', 'complianz-gdpr' ),
-				'ca' => __( 'PIPEDA (Canada)', 'complianz-gdpr' ),
+				'us' => __( 'United States', 'complianz-gdpr' ),
+				'ca' => __( 'Canada (PIPEDA)', 'complianz-gdpr' ),
 			),
-			'label'    => __( "Which privacy law or guideline do you want to use as the default for your worldwide visitors?",
+			'label'    => __( "Which region(s) do you target with your website?",
 				'complianz-gdpr' ),
 			'help'     => __( "This will determine how many and what kind of legal documents and the type of cookie banner and other requirements your site needs.",
 				'complianz-gdpr' ),
 			'comment'  => __( "The plugin will apply the above-selected region's settings to all visitors worldwide.",
 					'complianz-gdpr' ) . " "
-			              . sprintf( __( "If you want to dynamically apply privacy laws based on the visitor's location, consider upgrading to the %spremium version%s, which allows you to apply a privacy law specific for that region..",
+			              . sprintf( __( "If you want to target customers from several regions, consider upgrading to the %spremium version%s, which allows to select several or all regions simultaneously.",
 					'complianz-gdpr' ),
 					'<a href="https://complianz.io" target="_blank">', '</a>' ),
 			'required' => true,
@@ -56,7 +130,7 @@ $this->fields = $this->fields + array(
 
 		'eu_consent_regions' => array(
 			'step'      => STEP_COMPANY,
-			'section'   => 1,
+			'section'   => 2,
 			'source'    => 'wizard',
 			'default'   => 'no',
 			'type'      => 'radio',
@@ -70,7 +144,7 @@ $this->fields = $this->fields + array(
 
 		'california' => array(
 			'step'      => STEP_COMPANY,
-			'section'   => 1,
+			'section'   => 2,
 			'source'    => 'wizard',
 			'default'   => 'yes',
 			'type'      => 'radio',
@@ -82,61 +156,6 @@ $this->fields = $this->fields + array(
 				'complianz-gdpr' ),
 			'required'  => true,
 			'time'      => CMPLZ_MINUTES_PER_QUESTION,
-		),
-
-		'cookie-statement' => array(
-			'step'     => STEP_COMPANY,
-			'section'  => 2,
-			'source'   => 'wizard',
-			'default'  => 'generated',
-			'type'     => 'document',
-			'label'    => __( "cookie policy", 'complianz-gdpr' ),
-			'required' => true,
-			'help'     => __( 'Complianz will generate the cookie policy based on your cookies and the answers in the wizard, but you can also create your own, custom document.',
-				"complianz-gdpr" ),
-			'time'     => CMPLZ_MINUTES_PER_QUESTION,
-		),
-
-		'impressum' => array(
-			'step'     => STEP_COMPANY,
-			'section'  => 2,
-			'disabled' => true,
-			'source'   => 'wizard',
-			'default'  => 'none',
-			'type'     => 'document',
-			'label'    => __( "impressum", 'complianz-gdpr' ),
-			'required' => true,
-			'help'     => __( 'Complianz will generate the impressum based on the answers in the wizard, but you can also create your own, custom document.',
-				"complianz-gdpr" ),
-			'time'     => CMPLZ_MINUTES_PER_QUESTION,
-			'callback_condition' => array('eu_consent_regions' => 'yes'),
-		),
-
-		'privacy-statement' => array(
-			'step'     => STEP_COMPANY,
-			'section'  => 2,
-			'disabled' => true,
-			'source'   => 'wizard',
-			'type'     => 'document',
-			'default'  => 'custom',
-			'label'    => __( "privacy statement", 'complianz-gdpr' ),
-			'options'  => $this->yes_no,
-			'required' => false,
-			'time'     => CMPLZ_MINUTES_PER_QUESTION,
-		),
-
-		'disclaimer' => array(
-			'step'     => STEP_COMPANY,
-			'section'  => 2,
-			'source'   => 'wizard',
-			'default'  => 'none',
-			'disabled' => true,
-			'type'     => 'document',
-			'options'  => $this->yes_no,
-			'label'    => __( "disclaimer",
-				'complianz-gdpr' ),
-			'required' => false,
-			'time'     => CMPLZ_MINUTES_PER_QUESTION,
 		),
 
 		'organisation_name' => array(
@@ -177,7 +196,6 @@ $this->fields = $this->fields + array(
 				'complianz-gdpr' ),
 			'time'     => CMPLZ_MINUTES_PER_QUESTION,
 		),
-
 		'email_company'     => array(
 			'step'     => STEP_COMPANY,
 			'section'  => 3,
@@ -191,7 +209,6 @@ $this->fields = $this->fields + array(
 			'required' => true,
 			'time'     => CMPLZ_MINUTES_PER_QUESTION,
 		),
-
 		'telephone_company' => array(
 			'step'           => STEP_COMPANY,
 			'section'        => 3,
@@ -237,7 +254,7 @@ $this->fields = $this->fields + array(
 		// Purpose
 		'purpose_personaldata' => array(
 			'step'               => STEP_COMPANY,
-			'section'            => 6,
+			'section'            => 5,
 			'source'             => 'wizard',
 			'type'               => 'multicheckbox',
 			'default'            => '',
@@ -314,7 +331,7 @@ $this->fields = $this->fields + array(
 					'complianz-gdpr' ) . "<br>"
 			                             . __( 'If you can check all three options, you might not need a cookie warning on your site.',
 					'complianz-gdpr' )
-			                             . cmplz_read_more( 'https://complianz.io/how-to-configure-google-analytics-for-gdpr/' ),
+			                             . $this->read_more( 'https://complianz.io/how-to-configure-google-analytics-for-gdpr/' ),
 			'condition'               => array(
 				'compile_statistics' => 'google-analytics',
 			),
@@ -340,7 +357,7 @@ $this->fields = $this->fields + array(
 			),
 			'help'                    => __( 'With Tag Manager you can configure the selective firing of cookies in the Tag Manager dashboard.',
 					'complianz-gdpr' )
-			                             . cmplz_read_more( 'https://complianz.io/how-to-configure-tag-manager-for-gdpr/' ),
+			                             . $this->read_more( 'https://complianz.io/how-to-configure-tag-manager-for-gdpr/' ),
 			'condition'               => array(
 				'compile_statistics' => 'google-tag-manager',
 			),
@@ -566,7 +583,7 @@ $this->fields = $this->fields + array(
 				'complianz-gdpr' ),
 			'help'                    => __( "You can configure Hotjar privacy-friendly, if you do this, no consent is required for Hotjar.",
 					'complianz-gdpr' )
-			                             . cmplz_read_more( 'https://complianz.io/configuring-hotjar-for-gdpr/' ),
+			                             . $this->read_more( 'https://complianz.io/configuring-hotjar-for-gdpr/' ),
 			'time'                    => CMPLZ_MINUTES_PER_QUESTION,
 			'condition'               => array( 'thirdparty_services_on_site' => 'hotjar' ),
 			'callback_condition'      => array( 'consent_for_anonymous_stats' => 'NOT yes' ),
