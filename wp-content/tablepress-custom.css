@@ -23,18 +23,12 @@
 	vertical-align: middle;
 }
 
-.dataTables_filter {
-	float: none;
-	color: black;
-	padding-bottom: 20px;
-}
-
 .tablepress-id-wildlife .column-1 {
 	width: 235px;
 }
 
 .tablepress-id-wildlife .column-2 {
-	width: 125px;
+	width: 100px;
 }
 
 .tablepress-id-wildlife .column-3 {
@@ -47,6 +41,12 @@
 
 .tablepress-id-wildlife .column-4 {
 	font-weight: bold;
+}
+
+.dataTables_filter {
+	float: none;
+	color: black;
+	padding-bottom: 20px;
 }
 
 .tablepress .odd td {
@@ -74,4 +74,8 @@ body a:hover {
 .tablepress-id-wildlife .column-4 {
 	text-align: center;
 	vertical-align: middle;
+}
+
+.egm-marker-iw br {
+	display: none;
 }
