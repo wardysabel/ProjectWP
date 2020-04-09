@@ -1,0 +1,9 @@
+2020-04-08T17:02:14+00:00 CRITICAL Uncaught Error: Call to undefined function Mpdf\mb_internal_encoding() in /berw/homes1/y/ydw/public_html/dyfiwildlifecentre/wp-content/plugins/complianz-gdpr/assets/vendor/mpdf/mpdf/src/Mpdf.php:1115
+Stack trace:
+#0 /berw/homes1/y/ydw/public_html/dyfiwildlifecentre/wp-content/plugins/complianz-gdpr/class-document.php(2579): Mpdf\Mpdf->__construct(Array)
+#1 /berw/homes1/y/ydw/public_html/dyfiwildlifecentre/wp-content/plugins/complianz-gdpr/class-document.php(2445): cmplz_document->generate_pdf('cookie-statemen...', 'uk', false, true, '<h1>Proof of Co...', '<div><h1>Cookie...')
+#2 /berw/homes1/y/ydw/public_html/dyfiwildlifecentre/wp-includes/class-wp-hook.php(287): cmplz_document->generate_cookie_policy_snapshot()
+#3 /berw/homes1/y/ydw/public_html/dyfiwildlifecentre/wp-includes/class-wp-hook.php(311): WP_Hook->apply_filters('', Array)
+#4 /berw/homes1/y/ydw/public_html/dyfiwildlifecentre/wp-includes/plugin.php(544): WP_Hook->do_action(Array)
+#5 /berw/homes1/y/ydw/public_html/dyfiwildlifecentre/wp-cron.php(138): 
+
