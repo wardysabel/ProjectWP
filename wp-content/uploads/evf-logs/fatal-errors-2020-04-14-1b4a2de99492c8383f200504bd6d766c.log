@@ -1,0 +1,16 @@
+2020-04-14T08:07:32+00:00 CRITICAL require(): Failed opening required 'config.php' (include_path='.:/usr/share/php')
+
+2020-04-14T08:07:33+00:00 CRITICAL require(): Failed opening required 'config.php' (include_path='.:/usr/share/php')
+
+2020-04-14T08:08:34+00:00 CRITICAL require(): Failed opening required 'config.php' (include_path='.:/usr/share/php')
+
+2020-04-14T08:47:59+00:00 CRITICAL syntax error, unexpected '<', expecting end of file
+
+2020-04-14T09:21:48+00:00 CRITICAL syntax error, unexpected '<', expecting end of file
+
+2020-04-14T09:22:20+00:00 CRITICAL syntax error, unexpected '<'
+
+2020-04-14T09:36:06+00:00 CRITICAL syntax error, unexpected '<'
+
+2020-04-14T09:44:40+00:00 CRITICAL syntax error, unexpected end of file
+
