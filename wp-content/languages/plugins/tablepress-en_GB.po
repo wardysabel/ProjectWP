@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - TablePress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2018-10-15 12:18:42+0000\n"
+"PO-Revision-Date: 2020-04-10 16:09:56+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,34 @@ msgstr ""
 "X-Generator: GlotPress/2.4.0-alpha\n"
 "Language: en_GB\n"
 "Project-Id-Version: Plugins - TablePress - Stable (latest release)\n"
+
+#: views/view-edit.php:566
+msgid "This field can only contain letters, numbers, spaces, hyphens (-), underscores (_), and colons (:)."
+msgstr "This field can only contain letters, numbers, spaces, hyphens (-), underscores (_), and colons (:)."
+
+#: views/view-list.php:92 views/view-list.php:93 views/view-about.php:216
+#: views/view-about.php:217
+msgctxt "WP Security Audit Log"
+msgid "This release of TablePress is supported by %s, the most comprehensive WordPress activity logs plugin."
+msgstr "This release of TablePress is supported by %s, the most comprehensive WordPress activity logs plugin."
+
+#: views/view-list.php:83
+msgid "TablePress needs you!"
+msgstr "TablePress needs you!"
+
+#: views/view-edit.php:674
+msgid "To edit the content or modify the structure of this table, use the input fields and buttons below."
+msgstr "To edit the content or modify the structure of this table, use the input fields and buttons below."
+
+#: controllers/controller-admin.php:336 controllers/controller-admin.php:409
+#: controllers/controller-admin.php:667 controllers/controller-admin.php:747
+#: controllers/controller-admin.php:803 controllers/controller-admin.php:875
+#: controllers/controller-admin.php:915 controllers/controller-admin.php:1018
+#: controllers/controller-admin.php:1361 controllers/controller-admin.php:1388
+#: controllers/controller-admin.php:1429 controllers/controller-admin.php:1469
+#: controllers/controller-admin.php:1518 controllers/controller-admin.php:1544
+msgid "Sorry, you are not allowed to access this page."
+msgstr "Sorry, you are not allowed to access this page."
 
 #: views/view-list.php:383
 msgid "Bulk action selector"
@@ -153,6 +181,10 @@ msgstr "Top-Level (top)"
 msgid "Please note that invalid CSS code will be stripped, if it can not be corrected automatically."
 msgstr "Please note that invalid CSS code will be stripped, if it cannot be corrected automatically."
 
+#: views/view-options.php:112
+msgid "Information on available CSS selectors can be found in the <a href=\"%s\">Documentation</a>."
+msgstr "Information on available CSS selectors can be found in the <a href=\"%s\">Documentation</a>."
+
 #: views/view-options.php:110
 msgid "You can get styling examples from the <a href=\"%s\">FAQ</a>."
 msgstr "You can get styling examples from the <a href=\"%s\">FAQ</a>."
@@ -161,9 +193,17 @@ msgstr "You can get styling examples from the <a href=\"%s\">FAQ</a>."
 msgid "&#8220;Custom CSS&#8221; (<a href=\"%s\">Cascading Style Sheets</a>) can be used to change the styling or layout of a table."
 msgstr "&#8220;Custom CSS&#8221; (<a href=\"%s\">Cascading Style Sheets</a>) can be used to change the styling or layout of a table."
 
+#: views/view-options.php:99
+msgid "Load this &#8220;Custom CSS&#8221; code to change the table styling:"
+msgstr "Load this &#8220;Custom CSS&#8221; code to change the table styling:"
+
 #: views/view-options.php:98
 msgid "Custom CSS"
 msgstr "Custom CSS"
+
+#: views/view-options.php:80
+msgid "TablePress has some options which affect the plugin&#8217;s behavior in different areas."
+msgstr "TablePress has some options which affect the plugin&#8217;s behavior in different areas."
 
 #: views/view-options.php:61
 msgid "User Options"
@@ -384,6 +424,10 @@ msgstr "Attention!"
 #: views/view-list.php:55 views/view-list.php:95
 msgid "Hide this message"
 msgstr "Hide this message"
+
+#: views/view-list.php:54
+msgid "If you encounter any questions or problems, please visit the <a href=\"%1$s\">FAQ</a>, the <a href=\"%2$s\">Documentation</a>, and the <a href=\"%3$s\">Support</a> section on the <a href=\"%4$s\">plugin website</a>."
+msgstr "If you encounter any questions or problems, please visit the <a href=\"%1$s\">FAQ</a>, the <a href=\"%2$s\">Documentation</a>, and the <a href=\"%3$s\">Support</a> section on the <a href=\"%4$s\">plugin website</a>."
 
 #: views/view-list.php:53
 msgid "Thank you for using TablePress for the first time!"
@@ -1296,6 +1340,10 @@ msgstr "It is licensed as Free Software under GNU General Public License 2 (GPL 
 msgid "This plugin was written and developed by <a href=\"%s\">Tobias Bäthge</a>."
 msgstr "This plugin was written and developed by <a href=\"%s\">Tobias Bäthge</a>."
 
+#: views/view-about.php:98
+msgid "Please see the <a href=\"%s\">Documentation</a> for a list of these selectors and for styling examples."
+msgstr "Please see the <a href=\"%s\">Documentation</a> for a list of these selectors and for styling examples."
+
 #: views/view-about.php:97
 msgid "For this, each table is given certain CSS classes that can be used as CSS selectors."
 msgstr "For this, each table is given certain CSS classes that can be used as CSS selectors."
@@ -1331,6 +1379,10 @@ msgstr "If you want to show your tables anywhere else in your theme, you can use
 #: views/view-about.php:64
 msgid "You can then show the tables in your posts, on your pages, or in text widgets by using a Shortcode."
 msgstr "You can then show the tables in your posts, on your pages, or in text widgets by using a Shortcode."
+
+#: views/view-about.php:63
+msgid "Tables may contain text, numbers, and even HTML (e.g. to include images or links)."
+msgstr "Tables may contain text, numbers, and even HTML (e.g. to include images or links)."
 
 #: views/view-about.php:62
 msgid "TablePress allows you to create and manage tables in the admin area of WordPress."
@@ -1586,6 +1638,14 @@ msgstr "Before asking for support, please carefully read the <a href=\"%s\">Freq
 #: classes/class-view.php:107 views/view-about.php:153
 msgid "<a href=\"%1$s\">Support</a> is provided through the <a href=\"%2$s\">WordPress Support Forums</a>."
 msgstr "<a href=\"%1$s\">Support</a> is provided through the <a href=\"%2$s\">WordPress Support Forums</a>."
+
+#: classes/class-view.php:106 views/view-about.php:115
+msgid "For technical information, please see the <a href=\"%s\">Documentation</a>."
+msgstr "For technical information, please see the <a href=\"%s\">Documentation</a>."
+
+#: classes/class-view.php:105 views/view-about.php:114
+msgid "More information about TablePress can be found on the <a href=\"%1$s\">plugin website</a> or on its page in the <a href=\"%2$s\">WordPress Plugin Directory</a>."
+msgstr "More information about TablePress can be found on the <a href=\"%1$s\">plugin website</a> or on its page in the <a href=\"%2$s\">WordPress Plugin Directory</a>."
 
 #: classes/class-view.php:103
 msgid "TablePress Help"
