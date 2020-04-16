@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - TablePress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-10 16:09:56+0000\n"
+"PO-Revision-Date: 2020-04-15 15:28:48+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -28,6 +28,10 @@ msgstr "TablePress needs you!"
 #: views/view-edit.php:674
 msgid "To edit the content or modify the structure of this table, use the input fields and buttons below."
 msgstr "To edit the content or modify the structure of this table, use the input fields and buttons below."
+
+#: views/view-options.php:59
+msgid "Frontend Options and Styling"
+msgstr "Front end options and styling"
 
 #: controllers/controller-admin.php:336 controllers/controller-admin.php:409
 #: controllers/controller-admin.php:667 controllers/controller-admin.php:747
