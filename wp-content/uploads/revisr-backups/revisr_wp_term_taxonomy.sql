@@ -27,7 +27,7 @@ CREATE TABLE `wp_term_taxonomy` (
 
 LOCK TABLES `wp_term_taxonomy` WRITE;
 /*!40000 ALTER TABLE `wp_term_taxonomy` DISABLE KEYS */;
-INSERT INTO `wp_term_taxonomy` VALUES (1,1,'category','',0,0),(2,2,'language','a:3:{s:6:\"locale\";s:2:\"cy\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:5:\"wales\";}',0,0),(3,3,'term_language','',0,1),(4,4,'term_translations','a:2:{s:2:\"cy\";i:1;s:2:\"en\";i:7;}',0,2),(5,5,'language','a:3:{s:6:\"locale\";s:5:\"en_GB\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:2:\"gb\";}',0,0),(6,6,'term_language','',0,1),(7,7,'category','',0,0),(10,10,'nav_menu','',0,17),(17,17,'attachment_category','',0,0);
+INSERT INTO `wp_term_taxonomy` VALUES (1,1,'category','',0,0),(2,2,'language','a:3:{s:6:\"locale\";s:2:\"cy\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:5:\"wales\";}',0,0),(3,3,'term_language','',0,1),(4,4,'term_translations','a:2:{s:2:\"cy\";i:1;s:2:\"en\";i:7;}',0,2),(5,5,'language','a:3:{s:6:\"locale\";s:5:\"en_GB\";s:3:\"rtl\";i:0;s:9:\"flag_code\";s:2:\"gb\";}',0,0),(6,6,'term_language','',0,1),(7,7,'category','',0,0),(10,10,'nav_menu','',0,20),(17,17,'attachment_category','',0,0);
 /*!40000 ALTER TABLE `wp_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

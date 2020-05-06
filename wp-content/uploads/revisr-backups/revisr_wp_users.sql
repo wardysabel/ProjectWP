@@ -27,12 +27,12 @@ CREATE TABLE `wp_users` (
   KEY `user_login_key` (`user_login`),
   KEY `user_nicename` (`user_nicename`),
   KEY `user_email` (`user_email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_users` WRITE;
 /*!40000 ALTER TABLE `wp_users` DISABLE KEYS */;
-INSERT INTO `wp_users` VALUES (1,'ydw','$P$Bfsq9bfqjPL0wlELUchakcdbq8.6tA1','ydw','ydw@aber.ac.uk','','2020-03-11 22:21:24','',0,'ydw'),(5,'ward101','$P$BZfA9iy6.nMMrSgqa7LgGETKP2r.Db.','ward101','ysabelward@yahoo.co.uk','','2020-04-06 08:11:33','1586283683:$P$B2tUqEB9KsFCbBLa0qj82YB13GiagO/',0,'ys ward');
+INSERT INTO `wp_users` VALUES (1,'ydw','$P$Bfsq9bfqjPL0wlELUchakcdbq8.6tA1','ydw','ydw@aber.ac.uk','','2020-03-11 22:21:24','',0,'ydw'),(5,'ward101','$P$BZfA9iy6.nMMrSgqa7LgGETKP2r.Db.','ward101','ysabelward@yahoo.co.uk','','2020-04-06 08:11:33','1586283683:$P$B2tUqEB9KsFCbBLa0qj82YB13GiagO/',0,'ys ward'),(6,'krj5','$P$BcWs4HG5MFl.ziDCxHxcS5HoZLBKK11','krj5','kristian.jones13@hotmail.co.uk','','2020-04-17 14:11:38','1587132814:$P$BwycfysNtTGmyPuxWnD1KY5VPwBkib/',0,'kris jones');
 /*!40000 ALTER TABLE `wp_users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

@@ -29,12 +29,12 @@ CREATE TABLE `wp_wfissues` (
   KEY `status` (`status`),
   KEY `ignoreP` (`ignoreP`),
   KEY `ignoreC` (`ignoreC`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_wfissues` WRITE;
 /*!40000 ALTER TABLE `wp_wfissues` DISABLE KEYS */;
-INSERT INTO `wp_wfissues` VALUES (8,1585299771,1585299771,'new','skippedPaths',25,'6fd0d290b978eab8027e6b79501ac149','6fd0d290b978eab8027e6b79501ac149','1 path was skipped for the malware scan due to scan settings','The option \"Scan files outside your WordPress installation\" is off by default, which means 1 path and its file(s) will not be scanned for malware or unauthorized changes. To continue skipping this path, you may ignore this issue. Or to start scanning it, enable the option and subsequent scans will include it. Some paths may not be necessary to scan, so this is optional. <a href=\"https://www.wordfence.com/help/?query=scan-result-skipped-paths\" target=\"_blank\" rel=\"noopener noreferrer\">Learn More</a><br><br>The path skipped is ~/.git','a:0:{}');
+INSERT INTO `wp_wfissues` VALUES (8,1585299771,1585299771,'ignoreP','skippedPaths',25,'6fd0d290b978eab8027e6b79501ac149','6fd0d290b978eab8027e6b79501ac149','1 path was skipped for the malware scan due to scan settings','The option \"Scan files outside your WordPress installation\" is off by default, which means 1 path and its file(s) will not be scanned for malware or unauthorized changes. To continue skipping this path, you may ignore this issue. Or to start scanning it, enable the option and subsequent scans will include it. Some paths may not be necessary to scan, so this is optional. <a href=\"https://www.wordfence.com/help/?query=scan-result-skipped-paths\" target=\"_blank\" rel=\"noopener noreferrer\">Learn More</a><br><br>The path skipped is ~/.git','a:0:{}'),(59,1588783609,1588783609,'new','wfUpgrade',75,'61a32bb3cd04c7eadd9d73f7266b87df','61a32bb3cd04c7eadd9d73f7266b87df','Your WordPress version is out of date','WordPress version 5.4.1 is now available. Please upgrade immediately to get the latest security updates from WordPress.','a:2:{s:14:\"currentVersion\";s:3:\"5.4\";s:10:\"newVersion\";s:5:\"5.4.1\";}');
 /*!40000 ALTER TABLE `wp_wfissues` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

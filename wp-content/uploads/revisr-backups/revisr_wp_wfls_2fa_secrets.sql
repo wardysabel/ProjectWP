@@ -22,11 +22,12 @@ CREATE TABLE `wp_wfls_2fa_secrets` (
   `mode` enum('authenticator') NOT NULL DEFAULT 'authenticator',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_wfls_2fa_secrets` WRITE;
 /*!40000 ALTER TABLE `wp_wfls_2fa_secrets` DISABLE KEYS */;
+INSERT INTO `wp_wfls_2fa_secrets` VALUES (1,1,'÷zñk¼¼|#<ïÝ_ë]GÿG','f²~é†(Û}â•ôWNU¤.iÚgÿeò¼¬““\'´!Àsâ+ê',1586364671,1588764150,'authenticator');
 /*!40000 ALTER TABLE `wp_wfls_2fa_secrets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

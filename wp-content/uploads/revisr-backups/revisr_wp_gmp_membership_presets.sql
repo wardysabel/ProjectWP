@@ -21,7 +21,7 @@ CREATE TABLE `wp_gmp_membership_presets` (
 
 LOCK TABLES `wp_gmp_membership_presets` WRITE;
 /*!40000 ALTER TABLE `wp_gmp_membership_presets` DISABLE KEYS */;
-INSERT INTO `wp_gmp_membership_presets` VALUES (1,0),(2,0);
+INSERT INTO `wp_gmp_membership_presets` VALUES (1,0),(2,0),(3,0);
 /*!40000 ALTER TABLE `wp_gmp_membership_presets` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

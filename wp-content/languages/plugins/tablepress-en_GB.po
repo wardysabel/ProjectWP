@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - TablePress - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2020-04-15 15:28:48+0000\n"
+"PO-Revision-Date: 2020-04-30 09:33:38+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,6 +24,10 @@ msgstr "This release of TablePress is supported by %s, the most comprehensive Wo
 #: views/view-list.php:83
 msgid "TablePress needs you!"
 msgstr "TablePress needs you!"
+
+#: views/view-list.php:188 views/view-edit.php:675 views/view-about.php:91
+msgid "To insert a table into a post or page, copy its Shortcode %s and paste it into a &#8220;Shortcode&#8221; block at the desired place in the block editor."
+msgstr "To insert a table into a post or page, copy its Shortcode %s and paste it into a &#8220;Shortcode&#8221; block at the desired place in the block editor."
 
 #: views/view-edit.php:674
 msgid "To edit the content or modify the structure of this table, use the input fields and buttons below."
@@ -1368,6 +1372,10 @@ msgstr "Those will ask you for the necessary information and corresponding HTML 
 msgid "To easily add a link or an image to a cell, use the provided buttons."
 msgstr "To easily add a link or an image to a cell, use the provided buttons."
 
+#: views/view-about.php:85
+msgid "Then, you can edit your data or change the structure of your table (e.g. by inserting, deleting, moving, or swapping rows or columns or sorting them) and select specific table features like alternating row colors or whether to print the name or description, if you want."
+msgstr "Then, you can edit your data or change the structure of your table (e.g. by inserting, deleting, moving, or swapping rows or columns or sorting them) and select specific table features like alternating row colours or whether to print the name or description, if you want."
+
 #: views/view-about.php:82
 msgid "This means that you either let the plugin create an empty table for you or that you load an existing table from either a CSV, HTML, JSON, XLS, or XLSX file."
 msgstr "This means that you either let the plugin create an empty table for you or that you load an existing table from either a CSV, HTML, JSON, XLS, or XLSX file."
@@ -1667,6 +1675,10 @@ msgstr "<!-- The table with the ID %s is empty! -->"
 #: classes/class-import.php:378
 msgid "The imported file contains errors:"
 msgstr "The imported file contains errors:"
+
+#: classes/class-import.php:86
+msgid "XLSX - Microsoft Excel 2007-2019 (experimental)"
+msgstr "XLSX - Microsoft Excel 2007-2019 (experimental)"
 
 #: classes/class-import.php:85
 msgid "XLS - Microsoft Excel 97-2003 (experimental)"

@@ -17,12 +17,12 @@ CREATE TABLE `wp_gmp_marker_groups_relation` (
   `marker_id` int(11) NOT NULL,
   `groups_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=174 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_gmp_marker_groups_relation` WRITE;
 /*!40000 ALTER TABLE `wp_gmp_marker_groups_relation` DISABLE KEYS */;
-INSERT INTO `wp_gmp_marker_groups_relation` VALUES (17,2,1),(83,7,1),(85,8,1),(87,9,1),(118,1,1),(121,11,0),(124,13,0),(148,6,1),(150,10,1),(151,3,1),(161,4,2),(166,12,0),(167,14,0),(168,5,0),(173,15,0);
+INSERT INTO `wp_gmp_marker_groups_relation` VALUES (83,7,1),(85,8,1),(87,9,1),(121,11,0),(124,13,0),(148,6,1),(150,10,1),(151,3,1),(166,12,0),(167,14,0),(168,5,0),(175,4,2),(222,15,0),(223,16,0),(224,17,0),(225,18,0),(226,19,0),(227,20,0),(228,21,0),(229,1,1),(230,22,0),(231,23,0),(232,24,0),(233,25,0),(234,26,0),(235,27,0),(236,28,0),(237,29,0),(240,2,1),(241,30,1);
 /*!40000 ALTER TABLE `wp_gmp_marker_groups_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

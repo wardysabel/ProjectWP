@@ -19,11 +19,12 @@ CREATE TABLE `wp_evf_sessions` (
   `session_expiry` bigint(20) unsigned NOT NULL,
   PRIMARY KEY (`session_id`),
   UNIQUE KEY `session_key` (`session_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_evf_sessions` WRITE;
 /*!40000 ALTER TABLE `wp_evf_sessions` DISABLE KEYS */;
+INSERT INTO `wp_evf_sessions` VALUES (6,'5','a:1:{s:11:\"evf_notices\";N;}',1588870461);
 /*!40000 ALTER TABLE `wp_evf_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

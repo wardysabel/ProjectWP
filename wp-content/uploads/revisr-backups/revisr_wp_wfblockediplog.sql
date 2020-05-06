@@ -24,6 +24,7 @@ CREATE TABLE `wp_wfblockediplog` (
 
 LOCK TABLES `wp_wfblockediplog` WRITE;
 /*!40000 ALTER TABLE `wp_wfblockediplog` DISABLE KEYS */;
+INSERT INTO `wp_wfblockediplog` VALUES ('\0\0\0\0\0\0\0\0\0\0ÿÿQŒ¦','GB',1,18365,'waf'),('\0\0\0\0\0\0\0\0\0\0ÿÿQŒ¦','GB',1,18366,'waf'),('\0\0\0\0\0\0\0\0\0\0ÿÿV³ãt','GB',3,18388,'waf');
 /*!40000 ALTER TABLE `wp_wfblockediplog` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

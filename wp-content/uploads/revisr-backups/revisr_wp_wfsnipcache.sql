@@ -23,7 +23,7 @@ CREATE TABLE `wp_wfsnipcache` (
   KEY `expiration` (`expiration`),
   KEY `IP` (`IP`),
   KEY `type` (`type`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 LOCK TABLES `wp_wfsnipcache` WRITE;
